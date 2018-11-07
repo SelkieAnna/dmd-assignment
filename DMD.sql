@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS Car_sharing;
+
 CREATE TABLE IF NOT EXISTS Charging_station (
   id              INT             PRIMARY KEY,
   location        VARCHAR(255)    NOT NULL,
