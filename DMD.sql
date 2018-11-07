@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Car_model (
 );
 
 CREATE TABLE IF NOT EXISTS available_time(
-id      INT  NOT NULL ,
+id      INT PRIMARY KEY AUTO_INCREMENT,
 00h_01h   INT  NOT NULL,
 01h_02h   INT  NOT NULL,
 02h_03h   INT  NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS Car_part (
 
 CREATE TABLE IF NOT EXISTS Socket_car (
   socket_id INT      NOT NULL,
-  car_id    INT      NOT NULL,
+  car_id    VARCHAR(255)      NOT NULL,
   time_date DATETIME NOT NULL,
 
   FOREIGN KEY (socket_id) REFERENCES Socket (id),
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS Socket_car (
 
 CREATE TABLE IF NOT EXISTS Fixes (
   time_and_date DATETIME NOT NULL,
-  car_id        INT      NOT NULL,
+  car_id        VARCHAR(255)      NOT NULL,
   workshop_id   INT      NOT NULL,
 
   FOREIGN KEY (car_id) REFERENCES Car (registration_number),
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS Provides (
 
 CREATE TABLE IF NOT EXISTS Car_order (
   customer_id INT          NOT NULL,
-  car_id      INT          NOT NULL,
+  car_id      VARCHAR(255)          NOT NULL,
   point_a     VARCHAR(255) NOT NULL,
   point_b     VARCHAR(255) NOT NULL,
   date_time   DATETIME     NOT NULL,
