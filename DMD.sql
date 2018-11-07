@@ -71,5 +71,11 @@ CREATE TABLE IF NOT EXISTS Has_availble (
   FOREIGN KEY (car_part_id) REFERENCES Car_part(id)
 );
 
+CREATE TABLE  IF NOT EXISTS Provides(
+  car_part_id   INT       NOT NULL ,
+  part_drovider INT       NOT NULL ,
+  FOREIGN KEY (car_part_id) REFERENCES Car_part(id),
+  FOREIGN KEY (part_drovider) REFERENCES Part_provider(id)
+);
 
 
