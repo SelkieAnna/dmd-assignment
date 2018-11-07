@@ -27,10 +27,38 @@ CREATE TABLE IF NOT EXISTS Car_model (
 
 );
 
+CREATE TABLE IF NOT EXISTS available_time(
+id      INT  NOT NULL ,
+00h_01h   INT  NOT NULL,
+01h_02h   INT  NOT NULL,
+02h_03h   INT  NOT NULL,
+03h_04h   INT  NOT NULL,
+04h_05h   INT  NOT NULL,
+05h_06h   INT  NOT NULL,
+06h_07h   INT  NOT NULL,
+07h_08h   INT  NOT NULL,
+08h_09h   INT  NOT NULL,
+09h_10h   INT  NOT NULL,
+10h_11h   INT  NOT NULL,
+11h_12h   INT  NOT NULL,
+12h_13h   INT  NOT NULL,
+13h_14h   INT  NOT NULL,
+14h_15h   INT  NOT NULL,
+15h_16h   INT  NOT NULL,
+16h_17h   INT  NOT NULL,
+17h_18h   INT  NOT NULL,
+18h_19h   INT  NOT NULL,
+19h_20h   INT  NOT NULL,
+20h_21h   INT  NOT NULL,
+21h_22h   INT  NOT NULL,
+22h_23h    INT  NOT NULL,
+23h_24h   INT  NOT NULL
+);
 CREATE TABLE IF NOT EXISTS Workshop (
-  id               INT PRIMARY KEY AUTO_INCREMENT,
-  location         VARCHAR(255) NOT NULL,
-  available_timing VARCHAR(255) NOT NULL
+  id               INT            PRIMARY KEY,
+  location         VARCHAR(255)   NOT NULL,
+  available_timing INT            NOT NULL,
+  FOREIGN KEY (available_timing) REFERENCES  available_time(id)
 );
 
 CREATE TABLE IF NOT EXISTS Car (
