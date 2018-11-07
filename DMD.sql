@@ -55,5 +55,21 @@ CREATE TABLE IF NOT EXISTS Socket_car (
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)
 )
 
+CREATE TABLE IF NOT EXISTS Fixes (
+  time_and_date VARCHAR(255) NOT NULL ,
+  car_id        INT          NOT NULL ,
+  workshop_id   INT          NOT NULL ,
+  FOREIGN KEY  (car_id) REFERENCES Car(id),
+  FOREIGN KEY  (workshop_id) REFERENCES Workshop(id)
+);
+
+CREATE TABLE IF NOT EXISTS Has_availble (
+  workshop_id   INT        NOT NULL ,
+  car_part_id   INT        NOT NULL ,
+  amount        INT        NOT NULL ,
+  FOREIGN KEY (workshop_id) REFERENCES Workshop(id),
+  FOREIGN KEY (car_part_id) REFERENCES Car_part(id)
+);
+
 
 
