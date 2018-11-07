@@ -35,4 +35,5 @@ CREATE TABLE IF NOT EXISTS Car (
   full_charge_in_MaH  INT          NOT NULL,
   busy                TINYINT      NOT NULL,
   `condition`         TINYINT      NOT NULL
-)
+);
+
