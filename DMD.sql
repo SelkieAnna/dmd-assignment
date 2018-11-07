@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Socket_car (
 );
 
 CREATE TABLE IF NOT EXISTS Fixes (
-  time_and_date VARCHAR(255) NOT NULL ,
+  time_and_date DATETIME     NOT NULL ,
   car_id        INT          NOT NULL ,
   workshop_id   INT          NOT NULL ,
   FOREIGN KEY  (car_id) REFERENCES Car (registration_number),
