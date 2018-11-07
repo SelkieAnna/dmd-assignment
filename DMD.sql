@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Car (
   is_charging     INT             NOT NULL,
 
   FOREIGN KEY (car_model) REFERENCES Car_model (id),
-  FOREIGN KEY (current_charge) REFERENCES Socket_car (car_id)
+  FOREIGN KEY (is_charging) REFERENCES Socket_car (car_id)
 );
 
 CREATE TABLE IF NOT EXISTS Socket_car (
@@ -130,8 +130,8 @@ CREATE TABLE Repairable (
   model_id        INT,
   part_id         INT,
 
-  FOREIGN KEY model_id REFERENCES Car_model (id),
-  FOREIGN KEY part_id REFERENCES Car_part (id)
+  FOREIGN KEY (model_id) REFERENCES Car_model (id),
+  FOREIGN KEY (part_id) REFERENCES Car_part (id)
 )
 
 
