@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS Fixes (
   FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
 );
 
-CREATE TABLE IF NOT EXISTS Has_availble (
+CREATE TABLE IF NOT EXISTS Has_available (
   workshop_id INT NOT NULL,
   car_part_id INT NOT NULL,
   amount      INT NOT NULL,
