@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Workshop (
 );
 
 CREATE TABLE IF NOT EXISTS Car (
-  registration_number INT PRIMARY KEY,
+  registration_number VARCHAR(255) PRIMARY KEY,
   car_model           INT          NOT NULL,
   location            VARCHAR(255) NOT NULL,
   color               VARCHAR(255) NOT NULL,
