@@ -18,7 +18,20 @@ INSERT INTO Available_time(id, `00h_01h`, `01h_02h`, `02h_03h`, `03h_04h`, `04h_
             VALUE ('1231', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('1233', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('1235', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3');
+                  
 INSERT INTO Workshop(id, location, available_timing)
             VALUE ('34324', 'Califirnication', '1231'),
                   ('34327', 'Califirnication', '1233'),
                   ('34328', 'Califirnication', '1235');
+
+INSERT INTO Part_provider (address, phone_number, name)
+    VALUES  ('55 Hoover Holw, Garrett, KY, 41630', '(606) 358-0302', 'JJohnson Group'),
+            ('220 Thomas Creek Dr, Newark, AR, 72562', '(870) 799-3255', 'The Smith Corporation'),
+            ('1541 Owenwood Cir, Sandy, UT, 84092', '(801) 572-6446', 'BRENT'),
+            ('95 Royal Dr, Carson City, NV, 89706', '(940) 563-3108', 'K(Enterprise)mil');
+
+INSERT INTO Car_part (color, cost, name)
+    VALUES  ('Red', 90, 'Brake disc'),
+            ('Blue', 100, 'Front Right Door'),
+            ('Pink', 67, 'Wheel'),
+            ('Black', 130, 'Seat Cover');

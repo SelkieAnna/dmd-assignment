@@ -19,16 +19,16 @@ CREATE TABLE IF NOT EXISTS Socket (
 );
 
 CREATE TABLE IF NOT EXISTS Car_model (
-  id        INT PRIMARY KEY AUTO_INCREMENT,
-  company   VARCHAR(255) NOT NULL,
-  model     VARCHAR(255) NOT NULL,
-  type                VARCHAR(255) NOT NULL,
-  plug_type INT          NOT NULL
-
+  id              INT             PRIMARY KEY,
+  company         VARCHAR(255)    NOT NULL,
+  type            VARCHAR(255)    NOT NULL,
+  model           VARCHAR(255)    NOT NULL,
+  plug_type       INT             NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Available_time(
-id      INT PRIMARY KEY AUTO_INCREMENT,
+workshop_id      INT NOT NULL,
+`date`    DATE NOT NULL, 
 00h_01h   INT  NOT NULL,
 01h_02h   INT  NOT NULL,
 02h_03h   INT  NOT NULL,
@@ -51,14 +51,15 @@ id      INT PRIMARY KEY AUTO_INCREMENT,
 19h_20h   INT  NOT NULL,
 20h_21h   INT  NOT NULL,
 21h_22h   INT  NOT NULL,
-22h_23h    INT  NOT NULL,
+22h_23h   INT  NOT NULL,
 23h_24h   INT  NOT NULL
+
+FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
 );
+
 CREATE TABLE IF NOT EXISTS Workshop (
   id               INT            PRIMARY KEY,
   location         VARCHAR(255)   NOT NULL,
-  available_timing INT            NOT NULL,
-  FOREIGN KEY (available_timing) REFERENCES  available_time(id)
 );
 
 CREATE TABLE IF NOT EXISTS Car (
@@ -95,7 +96,7 @@ CREATE TABLE IF NOT EXISTS Car_part (
   id    INT PRIMARY KEY AUTO_INCREMENT,
   color VARCHAR(255) NOT NULL,
   cost  DECIMAL      NOT NULL,
-  name  INT          NOT NULL
+  name  VARCHAR(255)          NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Socket_car (
