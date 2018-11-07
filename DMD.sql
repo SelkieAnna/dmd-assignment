@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Charging_station (
-  station_id INT PRIMARY KEY,
+  id INT PRIMARY KEY,
   location   VARCHAR(255) NOT NULL,
   cost_mah   FLOAT        NOT NULL
 );
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Socket (
   voltage    FLOAT NOT NULL,
   station_id INT   NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (station_id) REFERENCES Charging_station (station_id)
+  FOREIGN KEY (station_id) REFERENCES Charging_station (id)
 );
 
 CREATE TABLE IF NOT EXISTS Car_model (
