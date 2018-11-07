@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Socket_car (
 
   FOREIGN KEY (socket_id) REFERENCES Socket (id),
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)
-)
+);
 
 CREATE TABLE IF NOT EXISTS Fixes (
   time_and_date VARCHAR(255) NOT NULL ,
