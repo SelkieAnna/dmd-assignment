@@ -1,4 +1,5 @@
 from flask import Flask
+import queries
 
 app = Flask(__name__)
 
