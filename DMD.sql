@@ -3,7 +3,7 @@ USE Car_sharing;
 -- drop database Car_sharing;
 
 CREATE TABLE IF NOT EXISTS Charging_station (
-  id       INT PRIMARY KEY AUTO_INCREMENT,
+  id       INT          PRIMARY KEY AUTO_INCREMENT,
   location VARCHAR(255) NOT NULL,
   cost_mah FLOAT        NOT NULL
 );
@@ -32,32 +32,32 @@ CREATE TABLE IF NOT EXISTS Workshop (
 );
 
 CREATE TABLE IF NOT EXISTS Available_time(
-workshop_id      INT NOT NULL,
-`date`    DATE NOT NULL, 
-00h_01h   INT  NOT NULL,
-01h_02h   INT  NOT NULL,
-02h_03h   INT  NOT NULL,
-03h_04h   INT  NOT NULL,
-04h_05h   INT  NOT NULL,
-05h_06h   INT  NOT NULL,
-06h_07h   INT  NOT NULL,
-07h_08h   INT  NOT NULL,
-08h_09h   INT  NOT NULL,
-09h_10h   INT  NOT NULL,
-10h_11h   INT  NOT NULL,
-11h_12h   INT  NOT NULL,
-12h_13h   INT  NOT NULL,
-13h_14h   INT  NOT NULL,
-14h_15h   INT  NOT NULL,
-15h_16h   INT  NOT NULL,
-16h_17h   INT  NOT NULL,
-17h_18h   INT  NOT NULL,
-18h_19h   INT  NOT NULL,
-19h_20h   INT  NOT NULL,
-20h_21h   INT  NOT NULL,
-21h_22h   INT  NOT NULL,
-22h_23h   INT  NOT NULL,
-23h_24h   INT  NOT NULL,
+workshop_id   INT   NOT NULL,
+`date`        DATE  NOT NULL, 
+00h_01h       INT   NOT NULL,
+01h_02h       INT   NOT NULL,
+02h_03h       INT   NOT NULL,
+03h_04h       INT   NOT NULL,
+04h_05h       INT   NOT NULL,
+05h_06h       INT   NOT NULL,
+06h_07h       INT   NOT NULL,
+07h_08h       INT   NOT NULL,
+08h_09h       INT   NOT NULL,
+09h_10h       INT   NOT NULL,
+10h_11h       INT   NOT NULL,
+11h_12h       INT   NOT NULL,
+12h_13h       INT   NOT NULL,
+13h_14h       INT   NOT NULL,
+14h_15h       INT   NOT NULL,
+15h_16h       INT   NOT NULL,
+16h_17h       INT   NOT NULL,
+17h_18h       INT   NOT NULL,
+18h_19h       INT   NOT NULL,
+19h_20h       INT   NOT NULL,
+20h_21h       INT   NOT NULL,
+21h_22h       INT   NOT NULL,
+22h_23h       INT   NOT NULL,
+23h_24h       INT   NOT NULL,
 
 FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
 );
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Car (
 );
 
 CREATE TABLE IF NOT EXISTS Customer (
-  id           INT PRIMARY KEY AUTO_INCREMENT,
+  id           INT          PRIMARY KEY AUTO_INCREMENT,
   residence    VARCHAR(255) NOT NULL,
   full_name    VARCHAR(255) NOT NULL,
   username     VARCHAR(255) NOT NULL,
@@ -86,32 +86,32 @@ CREATE TABLE IF NOT EXISTS Customer (
 );
 
 CREATE TABLE IF NOT EXISTS Part_provider (
-  id           INT PRIMARY KEY AUTO_INCREMENT,
+  id           INT          PRIMARY KEY AUTO_INCREMENT,
   address      VARCHAR(255) NOT NULL,
   phone_number VARCHAR(255) NOT NULL,
   name         VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Car_part (
-  id    INT PRIMARY KEY AUTO_INCREMENT,
+  id    INT          PRIMARY KEY AUTO_INCREMENT,
   color VARCHAR(255) NOT NULL,
   cost  DECIMAL      NOT NULL,
-  name  VARCHAR(255)          NOT NULL
+  name  VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Socket_car (
-  socket_id INT      NOT NULL,
-  car_id    VARCHAR(255)      NOT NULL,
-  time_date DATETIME NOT NULL,
+  socket_id INT           NOT NULL,
+  car_id    VARCHAR(255)  NOT NULL,
+  time_date DATETIME      NOT NULL,
 
   FOREIGN KEY (socket_id) REFERENCES Socket (id),
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)
 );
 
 CREATE TABLE IF NOT EXISTS Fixes (
-  time_and_date DATETIME NOT NULL,
-  car_id        VARCHAR(255)      NOT NULL,
-  workshop_id   INT      NOT NULL,
+  time_and_date DATETIME      NOT NULL,
+  car_id        VARCHAR(255)  NOT NULL,
+  workshop_id   INT           NOT NULL,
 
   FOREIGN KEY (car_id) REFERENCES Car (registration_number),
   FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS Provides (
 
 CREATE TABLE IF NOT EXISTS Car_order (
   customer_id INT          NOT NULL,
-  car_id      VARCHAR(255)          NOT NULL,
+  car_id      VARCHAR(255) NOT NULL,
   point_a     VARCHAR(255) NOT NULL,
   point_b     VARCHAR(255) NOT NULL,
   date_time   DATETIME     NOT NULL,
@@ -158,8 +158,8 @@ CREATE TABLE IF NOT EXISTS Part_order (
 );
 
 CREATE TABLE IF NOT EXISTS Repairable (
-  model_id INT,
-  part_id  INT,
+  model_id INT NOT NULL,
+  part_id  INT NOT NULL,
 
   FOREIGN KEY (model_id) REFERENCES Car_model (id),
   FOREIGN KEY (part_id) REFERENCES Car_part (id)

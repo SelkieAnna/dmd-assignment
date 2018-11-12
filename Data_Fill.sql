@@ -57,11 +57,17 @@ INSERT INTO Fixes(time_and_date, car_id, workshop_id)
 INSERT INTO Has_available(workshop_id, car_part_id, amount)
             VALUES ();
 
-INSERT INTO Repairable
+INSERT INTO Repairable(model_id, part_id)
+    VALUES (1, 4),
+           (3, 2),
+           (2, 4);
 
 INSERT INTO Provides
 
-INSERT INTO Part_order
+INSERT INTO Part_order(provider_id, workshop_id, part_id, amount)
+    VALUES (3, 2, 4, 10),
+           (1, 3, 2, 4),
+           (2, 1, 3, 7);
 
 INSERT INTO Charging_station
 
