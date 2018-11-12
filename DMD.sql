@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Car_sharing;
 USE Car_sharing;
-
+# drop database Car_sharing;
 
 CREATE TABLE IF NOT EXISTS Charging_station (
   id       INT PRIMARY KEY AUTO_INCREMENT,
@@ -19,11 +19,16 @@ CREATE TABLE IF NOT EXISTS Socket (
 );
 
 CREATE TABLE IF NOT EXISTS Car_model (
-  id              INT             PRIMARY KEY,
+  id              INT             PRIMARY KEY AUTO_INCREMENT,
   company         VARCHAR(255)    NOT NULL,
   type            VARCHAR(255)    NOT NULL,
   model           VARCHAR(255)    NOT NULL,
-  plug_type       INT             NOT NULL
+  plug_type       VARCHAR(255)    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Workshop (
+  id               INT            PRIMARY KEY AUTO_INCREMENT,
+  location         VARCHAR(255)   NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Available_time(
@@ -52,14 +57,9 @@ workshop_id      INT NOT NULL,
 20h_21h   INT  NOT NULL,
 21h_22h   INT  NOT NULL,
 22h_23h   INT  NOT NULL,
-23h_24h   INT  NOT NULL
+23h_24h   INT  NOT NULL,
 
 FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
-);
-
-CREATE TABLE IF NOT EXISTS Workshop (
-  id               INT            PRIMARY KEY,
-  location         VARCHAR(255)   NOT NULL,
 );
 
 CREATE TABLE IF NOT EXISTS Car (
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS Customer (
 
 CREATE TABLE IF NOT EXISTS Part_provider (
   id           INT PRIMARY KEY AUTO_INCREMENT,
-  address      INT          NOT NULL,
+  address      VARCHAR(255) NOT NULL,
   phone_number VARCHAR(255) NOT NULL,
   name         VARCHAR(255) NOT NULL
 );
@@ -164,3 +164,5 @@ CREATE TABLE IF NOT EXISTS Repairable (
   FOREIGN KEY (model_id) REFERENCES Car_model (id),
   FOREIGN KEY (part_id) REFERENCES Car_part (id)
 );
+
+SHOW ENGINE INNODB STATUS
