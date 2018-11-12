@@ -55,14 +55,20 @@ INSERT INTO Fixes(time_and_date, car_id, workshop_id)
                     ('2017-11-05 17:12:05', 'X123UY', '1');
 
 INSERT INTO Has_available(workshop_id, car_part_id, amount)
-            VALUES ();
+            VALUES ('1', '1', 4),
+                   ('2', '3', 7),
+                   ('3', '2', 4);
 
 INSERT INTO Repairable(model_id, part_id)
     VALUES (1, 4),
            (3, 2),
            (2, 4);
 
-INSERT INTO Provides
+INSERT INTO Provides(car_part_id, part_drovider)
+            VALUES ('1', '2'),
+                   ('2', '4'),
+                   ('3', '1'),
+                   ('4',' 3');
 
 INSERT INTO Part_order(provider_id, workshop_id, part_id, amount)
     VALUES (3, 2, 4, 10),
