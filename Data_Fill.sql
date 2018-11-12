@@ -24,16 +24,16 @@ INSERT INTO Car (registration_number, car_model, location, color, charge_level, 
 INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price)
             VALUES
                    ('3', 'X123UY', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2011-11-11 11:11:11', '400'),
-                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-04-10 12:15:17', '300'),
-                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-05-10 15:54:56', '500');
+                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-04 12:15:17', '300'),
+                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500');
 
 INSERT INTO Workshop(location)
-            VALUE ('Califirnication, 3'),
+            VALUES ('Califirnication, 3'),
                   ('Califirnication, 2'),
                   ('Califirnication, 7');
 
 INSERT INTO Available_time(workshop_id, `date`, `00h_01h`, `01h_02h`, `02h_03h`, `03h_04h`, `04h_05h`, `05h_06h`, `06h_07h`, `07h_08h`, `08h_09h`, `09h_10h`, `10h_11h`, `11h_12h`, `12h_13h`, `13h_14h`, `14h_15h`, `15h_16h`, `16h_17h`, `17h_18h`, `18h_19h`, `19h_20h`, `20h_21h`, `21h_22h`, `22h_23h`, `23h_24h`)
-            VALUE ('1', '2017-08-14', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
+            VALUES ('1', '2017-08-14', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('2', '2015-05-20' , '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('3', '2016-12-11', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3');
 
@@ -75,10 +75,32 @@ INSERT INTO Part_order(provider_id, workshop_id, part_id, amount)
            (1, 3, 2, 4),
            (2, 1, 3, 7);
 
-INSERT INTO Charging_station
+INSERT INTO Charging_station (location, cost_mah)
+    VALUES ('1205 Mcgregor Rd, Nortonville, KY, 42442', '5.03'),
+           ('55 Carriage Ln, Englishtown, NJ, 07726', '4.63'),
+           ('103 Williams St, Reidsville, GA, 30453', '5.64'),
+           ('200 N Main St, Holden, MO, 64040', '4.94'),
+           ('503 Chautauqua Ln, Dexter, MO, 63841', '4.76');
 
-INSERT INTO Socket
+INSERT INTO Socket (voltage, station_id, cur_charging)
+    VALUES ('10.65', '1', '0'),
+           ('7.65', '1', '0'),
+           ('15.66', '1', '0'),
+           ('20.76', '2', '0'),
+           ('14.53', '2', '0'),
+           ('14.65', '2', '0'),
+           ('10.55', '2', '1'),
+           ('12.35', '3', '0'),
+           ('6.47', '3', '0'),
+           ('7.64', '4', '0'),
+           ('12.32', '4', '0'),
+           ('13.83', '4', '0'),
+           ('23.54', '4', '0'),
+           ('26.25', '5', '1'),
+           ('11.43', '5', '0');
 
-INSERT INTO Socket_car
+INSERT INTO Socket_car (socket_id, car_id, time_date)
+    VALUES ('7', '2', '2018-11-12 16:53:26'),
+           ('14', '3', '2018-11-12 12:23:43');
 
 SHOW TABLES;
