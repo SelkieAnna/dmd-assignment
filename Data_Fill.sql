@@ -17,8 +17,8 @@ INSERT INTO Car_model (company, model, type, plug_type)
 INSERT INTO Car (registration_number, car_model, location, color, charge_level, full_charge, busy, `condition`, is_charging)
             VALUES
                    ('X123UY', '1', 'uni, 1', 'violet', '4000', '10000', '0', '1', '0'),
-                   ('K234EK', '2', 'uni, 2', 'sky blue', '3000', '12000', '0', '0', '0'),
-                   ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '12000', '0', '0', '0'),
+                   ('K234EK', '2', 'uni, 2', 'sky blue', '3000', '12000', '1', '0', '0'),
+                   ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '12000', '1', '0', '0'),
                    ('E235BA', '3', 'uni, 2', 'skyblue', '3000', '12000', '0', '0', '0');
 
 INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price)
@@ -100,7 +100,7 @@ INSERT INTO Socket (voltage, station_id, cur_charging)
            ('11.43', '5', '0');
 
 INSERT INTO Socket_car (socket_id, car_id, time_date)
-    VALUES ('7', '2', '2018-11-12 16:53:26'),
-           ('14', '3', '2018-11-12 12:23:43');
+    VALUES ('7', 'K234EK', '2018-11-12 16:53:26'),
+           ('14', 'P234OH', '2018-11-12 12:23:43');
 
 SHOW TABLES;
