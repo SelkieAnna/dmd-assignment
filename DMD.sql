@@ -9,12 +9,11 @@ CREATE TABLE IF NOT EXISTS Charging_station (
 );
 
 CREATE TABLE IF NOT EXISTS Socket (
-  id           INT   NOT NULL AUTO_INCREMENT,
+  id           INT   PRIMARY KEY AUTO_INCREMENT,
   voltage      FLOAT NOT NULL,
   station_id   INT   NOT NULL,
   cur_charging INT   NOT NULL,
 
-  PRIMARY KEY (id),
   FOREIGN KEY (station_id) REFERENCES Charging_station (id)
 );
 
@@ -165,4 +164,3 @@ CREATE TABLE IF NOT EXISTS Repairable (
   FOREIGN KEY (part_id) REFERENCES Car_part (id)
 );
 
-SHOW ENGINE INNODB STATUS
