@@ -163,4 +163,3 @@ CREATE TABLE IF NOT EXISTS Repairable (
   FOREIGN KEY (model_id) REFERENCES Car_model (id),
   FOREIGN KEY (part_id) REFERENCES Car_part (id)
 );
-
