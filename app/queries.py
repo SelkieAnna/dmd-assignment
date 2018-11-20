@@ -1,4 +1,4 @@
-import _mysql as mysql
+import MySQLdb as mysql
 
 
 class Queries:
@@ -7,16 +7,9 @@ class Queries:
         self.db = mysql.connect(host=host, user=user,
                                 passwd=passwd, db=db_name)
 
-
-
     def query_1(self):
-        self.db.query("""SELECT registration_number FROM Car""")
-        r = self.db.store_result()
-        print(r.fetchall())
-        print(r.fetch_row()[0])
-        r = list(r.fetch_row()[0])
-        for i in range(len(r)):
-            r[i] = r[i].decode()
+        cursor = self.db.cursor()
+        cursor.execute("""SELECT registration_number FROM Car""")
+        return cursor.fetchall()
 
-
-        return r
+    

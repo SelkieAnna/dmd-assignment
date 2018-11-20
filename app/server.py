@@ -12,7 +12,7 @@ def index():
 
 @app.route("/", methods=['POST'])
 def query_1():
-    return jsonify((list(map(str, db.query_1()))))
+    return jsonify(db.query_1())
 
 
 if __name__ == '__main__':
