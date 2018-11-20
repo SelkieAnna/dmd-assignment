@@ -17,3 +17,6 @@ def query_1():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+
+# TO DO:
+# Car.full_charge надо переместить из Car в Car Model, так как у одинаковых машин будет одинаковый полный заряд
