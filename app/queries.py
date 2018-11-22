@@ -30,3 +30,11 @@ class Queries:
                         car_id LIKE 'AN%')
                 AND color='red'""", (str(customer_id), ""))
         return cursor.fetchall()
+
+    def query_2(self, station_id, date):
+        cursor = self.db.cursor()
+        sql_query = "SELECT * FROM Available_time WHERE station_id = %s AND date = %s"
+        cursor.execute(sql_query, (str(station_id), date))
+        records = cursor.fetchall()
+        cursor.close()
+        return records[0][2:]

@@ -32,7 +32,14 @@ INSERT INTO Workshop(location)
                   ('Califirnication, 2'),
                   ('Califirnication, 7');
 
-INSERT INTO Available_time(workshop_id, `date`, `00h_01h`, `01h_02h`, `02h_03h`, `03h_04h`, `04h_05h`, `05h_06h`, `06h_07h`, `07h_08h`, `08h_09h`, `09h_10h`, `10h_11h`, `11h_12h`, `12h_13h`, `13h_14h`, `14h_15h`, `15h_16h`, `16h_17h`, `17h_18h`, `18h_19h`, `19h_20h`, `20h_21h`, `21h_22h`, `22h_23h`, `23h_24h`)
+INSERT INTO Charging_station (location, cost_mah)
+    VALUES ('1205 Mcgregor Rd, Nortonville, KY, 42442', '5.03'),
+           ('55 Carriage Ln, Englishtown, NJ, 07726', '4.63'),
+           ('103 Williams St, Reidsville, GA, 30453', '5.64'),
+           ('200 N Main St, Holden, MO, 64040', '4.94'),
+           ('503 Chautauqua Ln, Dexter, MO, 63841', '4.76');
+
+INSERT INTO Available_time(station_id, `date`, `00h_01h`, `01h_02h`, `02h_03h`, `03h_04h`, `04h_05h`, `05h_06h`, `06h_07h`, `07h_08h`, `08h_09h`, `09h_10h`, `10h_11h`, `11h_12h`, `12h_13h`, `13h_14h`, `14h_15h`, `15h_16h`, `16h_17h`, `17h_18h`, `18h_19h`, `19h_20h`, `20h_21h`, `21h_22h`, `22h_23h`, `23h_24h`)
             VALUES ('1', '2017-08-14', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('2', '2015-05-20' , '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'),
                   ('3', '2016-12-11', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3');
@@ -74,13 +81,6 @@ INSERT INTO Part_order(provider_id, workshop_id, part_id, amount)
     VALUES (3, 2, 4, 10),
            (1, 3, 2, 4),
            (2, 1, 3, 7);
-
-INSERT INTO Charging_station (location, cost_mah)
-    VALUES ('1205 Mcgregor Rd, Nortonville, KY, 42442', '5.03'),
-           ('55 Carriage Ln, Englishtown, NJ, 07726', '4.63'),
-           ('103 Williams St, Reidsville, GA, 30453', '5.64'),
-           ('200 N Main St, Holden, MO, 64040', '4.94'),
-           ('503 Chautauqua Ln, Dexter, MO, 63841', '4.76');
 
 INSERT INTO Socket (voltage, station_id, cur_charging)
     VALUES ('10.65', '1', '0'),

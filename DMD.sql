@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Car_sharing;
 USE Car_sharing;
--- drop database Car_sharing;
+ -- drop database Car_sharing;
 
 CREATE TABLE IF NOT EXISTS Charging_station (
   id       INT          PRIMARY KEY AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Workshop (
 );
 
 CREATE TABLE IF NOT EXISTS Available_time(
-workshop_id   INT   NOT NULL,
+station_id   INT   NOT NULL,
 `date`        DATE  NOT NULL, 
 00h_01h       INT   NOT NULL,
 01h_02h       INT   NOT NULL,
@@ -58,7 +58,7 @@ workshop_id   INT   NOT NULL,
 22h_23h       INT   NOT NULL,
 23h_24h       INT   NOT NULL,
 
-FOREIGN KEY (workshop_id) REFERENCES Workshop (id)
+FOREIGN KEY (station_id) REFERENCES Charging_station (id)
 );
 
 CREATE TABLE IF NOT EXISTS Car (
