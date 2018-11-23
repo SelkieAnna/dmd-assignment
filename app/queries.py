@@ -38,3 +38,24 @@ class Queries:
         records = cursor.fetchall()
         cursor.close()
         return records[0][2:]
+
+    def query_4(self, customer_id):
+        cursor = self.db.cursor()
+        sql_query = "SELECT A.* FROM Car_order A " \
+                    "INNER JOIN (SELECT date_time " \
+                                "FROM Car_order " \
+                                "GROUP BY date_time " \
+                                "HAVING COUNT(*) > 1) B " \
+                    "ON A.customer_id = %s AND A.date_time = B.date_time " \
+                    "WHERE (YEAR(A.date_time) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) " \
+                    "AND MONTH(A.date_time) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)) OR " \
+                    "(YEAR(A.date_time) = YEAR(CURRENT_DATE)" \
+                    "AND MONTH(A.date_time) = MONTH(CURRENT_DATE))"
+        cursor.execute(sql_query, customer_id)
+        records = cursor.fetchall()
+        cursor.close()
+        if len(records) == 0:
+            return False
+        else:
+            return True
+

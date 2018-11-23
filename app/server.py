@@ -18,6 +18,9 @@ def query_1():
 def query_2():
     return jsonify(db.query_2(1, '2017-08-14'))
 
+@app.route("/query_4", methods=['GET'])
+def query_4():
+    return jsonify(db.query_4('1'))
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
