@@ -79,3 +79,23 @@ class Queries:
         else:
             return True
 
+    def query_5(self, day):
+        cursor = self.db.cursor()
+        sql_query = "SELECT AVG(distance_to_customer) FROM Car_order " \
+                    "WHERE YEAR(date_time) = YEAR(%s) " \
+                                "AND MONTH(date_time) = MONTH(%s)" \
+                                "AND DAY(date_time) = DAY(%s) UNION ALL " \
+                    "SELECT AVG(trip_duration) FROM Car_order " \
+                        "WHERE YEAR(date_time) = YEAR(%s) " \
+                        "AND MONTH(date_time) = MONTH(%s)" \
+                        "AND DAY(date_time) = DAY(%s)"
+
+
+
+        cursor.execute(sql_query, (day, day, day, day, day, day,))
+        records = cursor.fetchall()
+        record1 = records[0][0]
+        record2 = records[1][0]
+        cursor.close()
+        return record1, record2
+

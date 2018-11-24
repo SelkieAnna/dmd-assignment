@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS Car_model (
   company         VARCHAR(255)    NOT NULL,
   type            VARCHAR(255)    NOT NULL,
   model           VARCHAR(255)    NOT NULL,
-  plug_type       VARCHAR(255)    NOT NULL
+  plug_type       VARCHAR(255)    NOT NULL,
+  full_charge         INT          NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Workshop (
@@ -67,7 +68,6 @@ CREATE TABLE IF NOT EXISTS Car (
   location            VARCHAR(255) NOT NULL,
   color               VARCHAR(255) NOT NULL,
   charge_level        INT          NOT NULL,
-  full_charge         INT          NOT NULL,
   busy                TINYINT      NOT NULL,
   `condition`         TINYINT      NOT NULL,
   is_charging         INT          NOT NULL,
@@ -140,6 +140,8 @@ CREATE TABLE IF NOT EXISTS Car_order (
   point_b     VARCHAR(255) NOT NULL,
   date_time   DATETIME     NOT NULL,
   price       DECIMAL      NOT NULL,
+  distance_to_customer FLOAT  NOT NULL,
+  trip_duration FLOAT    NOT NULL,
 
   FOREIGN KEY (customer_id) REFERENCES Customer (id),
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)
