@@ -7,26 +7,26 @@ INSERT INTO Customer (residence, full_name, username, email, phone_number)
                    ('345 Jerry Ln, Erwin, NC, 28339', 'Timerlan Nasyrov', 'Timerlanchik', 't.nasyrov@innopolis.ru', '12345678'),
                    ('2003 Jay St, Walnut Ridge, AR, 72476', 'Andrey Chertkov', 'Andryusha', 'a.chertkov@innopolis.ru', '12345678');
 
-INSERT INTO Car_model (company, model, type, plug_type)
+INSERT INTO Car_model (company, model, type, plug_type, full_charge)
             VALUES
-                   ('Ford', 'Focus', 'regular', 'Volkswagen standard'),
-                   ('BMW', 'M3', 'regular', 'tesla'),
-                   ('Gaz', 'el', 'truck', 'tesla'),
-                   ('Volkswagen', 'Transporter', 'Microbus', 'Volkswagen standard');
+                   ('Ford', 'Focus', 'regular', 'Volkswagen standard', '10000'),
+                   ('BMW', 'M3', 'regular', 'tesla', '12000'),
+                   ('Gaz', 'el', 'truck', 'tesla', '12000'),
+                   ('Volkswagen', 'Transporter', 'Microbus', 'Volkswagen standard', '12000');
 
-INSERT INTO Car (registration_number, car_model, location, color, charge_level, full_charge, busy, `condition`, is_charging)
+INSERT INTO Car (registration_number, car_model, location, color, charge_level, busy, `condition`, is_charging)
             VALUES
-                   ('X123UY', '1', 'uni, 1', 'violet', '4000', '10000', '0', '1', '0'),
-                   ('K234EK', '2', 'uni, 2', 'sky blue', '3000', '12000', '1', '0', '0'),
-                   ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '12000', '1', '0', '0'),
-                   ('E235BA', '3', 'uni, 2', 'skyblue', '3000', '12000', '0', '0', '0');
+                   ('X123UY', '1', 'uni, 1', 'violet', '4000',  '0', '1', '0'),
+                   ('K234EK', '2', 'uni, 2', 'sky blue', '3000',  '1', '0', '0'),
+                   ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '1', '0', '0'),
+                   ('E235BA', '3', 'uni, 2', 'skyblue', '3000', '0', '0', '0');
 
-INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price)
+INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, distance_to_customer, trip_duration)
             VALUES
-                   ('3', 'X123UY', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2011-11-11 11:11:11', '400'),
-                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300'),
-                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300'),
-                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500');
+                   ('3', 'X123UY', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2011-11-11 11:11:11', '400', '1.5', '25'),
+                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.7', '30'),
+                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.1', '30'),
+                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500', '3', '17.5');
 
 INSERT INTO Workshop(location)
             VALUES ('Califirnication, 3'),

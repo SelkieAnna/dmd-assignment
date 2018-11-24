@@ -22,6 +22,10 @@ def query_2():
 def query_4():
     return jsonify(db.query_4('1'))
 
+@app.route("/query_5", methods=['GET'])
+def query_5():
+    return jsonify(db.query_5('2018-10-11'))
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
 
