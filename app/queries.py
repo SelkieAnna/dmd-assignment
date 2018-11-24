@@ -7,7 +7,6 @@ class Queries:
         self.db = mysql.connect(host=host, user=user,
                                 passwd=passwd, db=db_name)
 
-
     # в этом quary есть проблема
     # объясняю как работает:
     # на всякие курсоры можно забить и принять как должное
@@ -38,6 +37,27 @@ class Queries:
         records = cursor.fetchall()
         cursor.close()
         return records[0][2:]
+
+    def query_3(self):
+        cursor = self.db.cursor()
+        morning = '''SELECT COUNT(car_id) FROM
+                        (SELECT DISTINCT car_id FROM Car_order
+                        WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00) AND
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00))'''
+        afternoon = '''SELECT COUNT(car_id) FROM
+                        (SELECT DISTINCT car_id FROM Car_order
+                        WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00) AND
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00))'''
+        evening = '''SELECT COUNT(car_id) FROM
+                        (SELECT DISTINCT car_id FROM Car_order
+                        WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00) AND
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00))'''
+        cursor.execute(morning)
+        cursor.execute(afternoon)
+        cursor.execute(evening)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
 
     def query_4(self, customer_id):
         cursor = self.db.cursor()
