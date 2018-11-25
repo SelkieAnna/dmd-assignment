@@ -11,10 +11,10 @@ class Queries:
         cursor = self.db.cursor()
         query = """
                     SELECT * FROM Car WHERE 
-                        registration_number = (SELECT car_id FROM Car_order WHERE 
+                        registration_number in (SELECT car_id FROM Car_order WHERE 
                                                 customer_id=%s AND 
                                                 car_id LIKE %s)
-                    AND color=%s
+                    AND color = %s
                 """
         regexp = str(registration_number_start) + '%'
         cursor.execute(query, (str(customer_id), regexp, str(color)))
