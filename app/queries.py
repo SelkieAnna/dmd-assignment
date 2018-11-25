@@ -149,3 +149,19 @@ class Queries:
         result = cursor.fetchall()
         cursor.close()
         return result
+
+    # how many months, percentage
+    def query_7(self):
+        cursor = self.db.cursor()
+        sql = """SELECT car_id, COUNT(*) FROM 
+                        (SELECT car_id from Car_order
+                        WHERE DATE(date_time) > %s)
+                    GROUP BY car_id
+                    ORDER BY -COUNT(*)
+                    LIMIT COUNT(*) * %s"""
+        date = '2010-07-14'
+        percentage = 0.1
+        cursor.execute(sql, str(date), str(percentage))
+        result = cursor.fetchall()
+        cursor.close()
+        return result
