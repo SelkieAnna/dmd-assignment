@@ -67,10 +67,10 @@ INSERT INTO Car_part (color, cost, name)
             ('Pink', 67, 'Wheel'),
             ('Black', 130, 'Seat Cover');
 
-INSERT INTO Fixes(time_and_date, car_id, workshop_id)
-            VALUES ('2017-11-08 01:29:30', 'X123UY', '2'),
-                    ('2017-11-03 12:29:30', 'K234EK', '3'),
-                    ('2017-11-05 17:12:05', 'X123UY', '1');
+INSERT INTO Fixes(time_and_date, car_id, workshop_id, part_id)
+            VALUES ('2017-11-08 01:29:30', 'X123UY', '2', '1'),
+                    ('2017-11-03 12:29:30', 'K234EK', '3', '2'),
+                    ('2017-11-05 17:12:05', 'X123UY', '1', '3');
 
 INSERT INTO Has_available(workshop_id, car_part_id, amount)
             VALUES ('1', '1', 4),
