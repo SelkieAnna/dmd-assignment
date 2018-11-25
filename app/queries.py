@@ -23,7 +23,7 @@ class Queries:
     def query_2(self, station_id, date):
         cursor = self.db.cursor()
         sql_query = """
-                        SELECT * FROM Available_time WHERE station_id = %s AND date = %s
+                        SELECT * FROM Station_time WHERE station_id = %s AND date = %s
                     """
         cursor.execute(sql_query, (str(station_id), date))
         records = cursor.fetchall()
@@ -161,3 +161,18 @@ class Queries:
         result = cursor.fetchall()
         cursor.close()
         return result
+
+    def query_8(self, date):
+        cursor = self.db.cursor()
+        sql = """SELECT customer_id, COUNT(customer_id) FROM Car_order A 
+                    INNER JOIN (SELECT time_date 
+                                FROM Socket_car 
+                                GROUP BY time_date) B 
+                    ON date(B.time_date) = date(A.date_time) AND date(B.time_date) >= %s
+                 GROUP BY customer_id
+                """
+        cursor.execute(sql, (date,))
+        result = cursor.fetchall()
+        cursor.close()
+        return result  #first value is user_id. second value is amount
+    

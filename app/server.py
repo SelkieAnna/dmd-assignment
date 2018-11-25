@@ -26,8 +26,9 @@ def query_4():
 def query_5():
     return jsonify(db.query_5('2018-10-11'))
 
+@app.route("/query_8", methods=['GET'])
+def query_8():
+    return jsonify(db.query_8('2018-10-11'))
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)
-
-# TO DO:
-# Car.full_charge надо переместить из Car в Car Model, так как у одинаковых машин будет одинаковый полный заряд
