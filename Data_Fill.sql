@@ -20,7 +20,8 @@ INSERT INTO Car (registration_number, car_model, location, color, charge_level, 
                    ('K234EK', '2', 'uni, 2', 'sky blue', '3000',  '1', '0', '0'),
                    ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '1', '0', '0'),
                    ('E235BA', '3', 'uni, 2', 'skyblue', '3000', '0', '0', '0'),
-                   ('AN123B', '2', 'uni,2', 'red', '5000', '0', '0', '0');
+                   ('AN123B', '2', 'uni,2', 'red', '5000', '0', '0', '0'),
+                   ('AN546F', '3', 'uni, 5', 'red', '4000', '0', '0', '0');
 
 INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, distance, trip_duration)
             VALUES
@@ -28,7 +29,8 @@ INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, 
                    ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.7', '30'),
                    ('2', 'AN123B', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2018-10-04 12:15:17', '500', '4', '20.5'),
                    ('4', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-11-12 12:15:17', '300', '0.1', '30'),
-                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500', '3', '17.5');
+                   ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500', '3', '17.5'),
+                   ('2', 'AN546F', '55 Hoover Holw, Garrett, KY, 41630', '2003 Jay St, Walnut Ridge, AR, 72476', '2018-10-07 13:44:34', '400', '7', '25');
 
 
 INSERT INTO Workshop(location)

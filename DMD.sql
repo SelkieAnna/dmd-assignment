@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Car_sharing;
 USE Car_sharing;
- -- drop database Car_sharing;
+-- drop database Car_sharing;
 
 CREATE TABLE IF NOT EXISTS Charging_station (
   id       INT          PRIMARY KEY AUTO_INCREMENT,
