@@ -21,7 +21,7 @@ INSERT INTO Car (registration_number, car_model, location, color, charge_level, 
                    ('P234OH', '2', 'Kazahstan', 'space earl grey', '2000', '1', '0', '0'),
                    ('E235BA', '3', 'uni, 2', 'skyblue', '3000', '0', '0', '0');
 
-INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, distance_to_customer, trip_duration)
+INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, distance, trip_duration)
             VALUES
                    ('3', 'X123UY', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2011-11-11 11:11:11', '400', '1.5', '25'),
                    ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.7', '30'),

@@ -140,8 +140,8 @@ CREATE TABLE IF NOT EXISTS Car_order (
   point_b     VARCHAR(255) NOT NULL,
   date_time   DATETIME     NOT NULL,
   price       DECIMAL      NOT NULL,
-  distance_to_customer FLOAT  NOT NULL,
-  trip_duration FLOAT    NOT NULL,
+  distance    FLOAT        NOT NULL,
+  trip_duration FLOAT      NOT NULL,
 
   FOREIGN KEY (customer_id) REFERENCES Customer (id),
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)

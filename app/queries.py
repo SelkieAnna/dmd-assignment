@@ -78,7 +78,7 @@ class Queries:
     def query_5(self, day):
         cursor = self.db.cursor()
         sql_query = """
-                    SELECT AVG(distance_to_customer) FROM Car_order
+                    SELECT AVG(distance) FROM Car_order
                     WHERE YEAR(date_time) = YEAR(%s)
                                 AND MONTH(date_time) = MONTH(%s)
                                 AND DAY(date_time) = DAY(%s) UNION ALL
