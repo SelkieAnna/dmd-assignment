@@ -25,7 +25,7 @@ INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, 
             VALUES
                    ('3', 'X123UY', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2011-11-11 11:11:11', '400', '1.5', '25'),
                    ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.7', '30'),
-                   ('1', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-10-11 12:15:17', '300', '0.1', '30'),
+                   ('4', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-11-12 12:15:17', '300', '0.1', '30'),
                    ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500', '3', '17.5');
 
 INSERT INTO Workshop(location)
@@ -107,6 +107,6 @@ INSERT INTO Socket (voltage, station_id, cur_charging)
 
 INSERT INTO Socket_car (socket_id, car_id, time_date)
     VALUES ('7', 'K234EK', '2018-11-12 16:53:26'),
-           ('14', 'P234OH', '2018-11-12 12:23:43');
+           ('14', 'P234OH', '2018-10-11 12:23:43');
 
 SHOW TABLES;

@@ -164,13 +164,14 @@ class Queries:
 
     def query_8(self, date):
         cursor = self.db.cursor()
-        sql = """SELECT COUNT(A.*) FROM Socket_car A
-                    INNER JOIN (SELECT date_time
-                                FROM Car_order
-                                GROUP BY date_time) B
-                    ON A.date_time = B.date_time AND A.date_time > %s
+        sql = """SELECT customer_id, COUNT(customer_id) FROM Car_order A 
+                    INNER JOIN (SELECT time_date 
+                                FROM Socket_car 
+                                GROUP BY time_date) B 
+                    ON date(B.time_date) = date(A.date_time) AND date(B.time_date) >= %s
+                 GROUP BY customer_id
                 """
-        cursor.execute(sql, (date))
+        cursor.execute(sql, (date,))
         result = cursor.fetchall()
         cursor.close()
         return result
