@@ -23,7 +23,7 @@ class Queries:
     def query_2(self, station_id, date):
         cursor = self.db.cursor()
         sql_query = """
-                        SELECT * FROM Available_time WHERE station_id = %s AND date = %s
+                        SELECT * FROM Station_time WHERE station_id = %s AND date = %s
                     """
         cursor.execute(sql_query, (str(station_id), date))
         records = cursor.fetchall()
@@ -158,6 +158,19 @@ class Queries:
         date = '2010-07-14'
         percentage = 0.1
         cursor.execute(sql, str(date), str(percentage))
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+
+    def query_8(self, date):
+        cursor = self.db.cursor()
+        sql = """SELECT COUNT(A.*) FROM Socket_car A
+                    INNER JOIN (SELECT date_time
+                                FROM Car_order
+                                GROUP BY date_time) B
+                    ON A.date_time = B.date_time AND A.date_time > %s
+                """
+        cursor.execute(sql, (date))
         result = cursor.fetchall()
         cursor.close()
         return result
