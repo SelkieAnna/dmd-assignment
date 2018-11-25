@@ -174,4 +174,5 @@ class Queries:
         cursor.execute(sql, (date,))
         result = cursor.fetchall()
         cursor.close()
-        return result
+        return result  #first value is user_id. second value is amount
+    
