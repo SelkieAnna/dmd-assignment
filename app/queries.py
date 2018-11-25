@@ -29,7 +29,7 @@ class Queries:
                     AND color='red'
                 """
         regexp = 'AN%'
-        cursor.execute(query, str(customer_id), regexp)
+        cursor.execute(query, (str(customer_id), regexp))
         return cursor.fetchall()
 
     def query_2(self, station_id, date):
@@ -45,18 +45,18 @@ class Queries:
 
     # def query_3(self):
     #     cursor = self.db.cursor()
-    #     morning = '''SELECT COUNT(car_id) FROM
+    #     morning = """SELECT COUNT(car_id) FROM
     #                     (SELECT DISTINCT car_id FROM Car_order
     #                     WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
-    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00)''''
-    #     afternoon = '''SELECT COUNT(car_id) FROM
+    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00)"""'
+    #     afternoon = """SELECT COUNT(car_id) FROM
     #                     (SELECT DISTINCT car_id FROM Car_order
     #                     WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
-    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00)''''
-    #     evening = '''SELECT COUNT(car_id) FROM
+    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00)"""'
+    #     evening = """SELECT COUNT(car_id) FROM
     #                     (SELECT DISTINCT car_id FROM Car_order
     #                     WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
-    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00)''''
+    #                           DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00)"""'
     #     cursor.execute(morning)
     #     cursor.execute(afternoon)
     #     cursor.execute(evening)
