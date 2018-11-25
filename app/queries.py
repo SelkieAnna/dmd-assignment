@@ -54,9 +54,9 @@ class Queries:
                               DATE(date_time) < %s) AS Evening_Cars"""
         cursor.execute(morning, (begin_date, end_date))
         result.append(cursor.fetchall()[0][0])
-        cursor.execute(afternoon)
+        cursor.execute(afternoon, (begin_date, end_date))
         result.append(cursor.fetchall()[0][0])
-        cursor.execute(evening)
+        cursor.execute(evening, (begin_date, end_date))
         result.append(cursor.fetchall()[0][0])
         cursor.close()
         return result
