@@ -1,10 +1,10 @@
-import MySQLdb as mysql
+import MySQLdb as Mysql
 
 
 class Queries:
 
     def __init__(self, host, user, passwd, db_name):
-        self.db = mysql.connect(host=host, user=user,
+        self.db = Mysql.connect(host=host, user=user,
                                 passwd=passwd, db=db_name)
 
     # в этом quary есть проблема
@@ -21,13 +21,14 @@ class Queries:
     # если такая херня будет нам мешать, придется выбрать другую либу для SQL, а то это не дело
     def query_1(self, customer_id):
         cursor = self.db.cursor()
-        cursor.execute("""
-        SELECT * FROM Car WHERE 
-                registration_number=
-                (SELECT car_id FROM Car_order WHERE 
-                        customer_id=%s AND 
-                        car_id LIKE 'AN%')
-                AND color='red'""", (str(customer_id), ""))
+        query = """
+                    SELECT * FROM Car WHERE 
+                        registration_number = (SELECT car_id FROM Car_order WHERE 
+                                                customer_id=%s AND 
+                                                car_id LIKE 'AN%')
+                    AND color='red'
+                """
+        cursor.execute(query, str(customer_id))
         return cursor.fetchall()
 
     def query_2(self, station_id, date):
@@ -37,6 +38,7 @@ class Queries:
         records = cursor.fetchall()
         cursor.close()
         return records[0][2:]
+
 
     def query_3(self):
         cursor = self.db.cursor()
@@ -61,16 +63,17 @@ class Queries:
 
     def query_4(self, customer_id):
         cursor = self.db.cursor()
-        sql_query = "SELECT A.* FROM Car_order A " \
-                    "INNER JOIN (SELECT date_time " \
-                                "FROM Car_order " \
-                                "GROUP BY date_time " \
-                                "HAVING COUNT(*) > 1) B " \
-                    "ON A.customer_id = %s AND A.date_time = B.date_time " \
-                    "WHERE (YEAR(A.date_time) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH) " \
-                    "AND MONTH(A.date_time) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)) OR " \
-                    "(YEAR(A.date_time) = YEAR(CURRENT_DATE)" \
-                    "AND MONTH(A.date_time) = MONTH(CURRENT_DATE))"
+        sql_query = """SELECT A.* FROM Car_order A
+                    INNER JOIN (SELECT date_time
+                                FROM Car_order
+                                GROUP BY date_time
+                                HAVING COUNT(*) > 1) B
+                    ON A.customer_id = %s AND A.date_time = B.date_time
+                    WHERE (YEAR(A.date_time) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+                    AND MONTH(A.date_time) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)) OR
+                    (YEAR(A.date_time) = YEAR(CURRENT_DATE)
+                    AND MONTH(A.date_time) = MONTH(CURRENT_DATE))
+                    """
         cursor.execute(sql_query, customer_id)
         records = cursor.fetchall()
         cursor.close()
