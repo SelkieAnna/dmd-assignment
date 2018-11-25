@@ -10,19 +10,23 @@ def index():
     pass
 
 
-@app.route("/", methods=['POST'])
+@app.route("/query_1", methods=['POST'])
 def query_1():
     return jsonify(db.query_1(2, 'AN', 'red'))
 
-@app.route("/query_2", methods=['GET'])
+@app.route("/query_2", methods=['POST'])
 def query_2():
     return jsonify(db.query_2(1, '2017-08-14'))
 
-@app.route("/query_4", methods=['GET'])
+@app.route("/query_3", methods=['POST'])
+def query_3():
+    return jsonify(db.query_3('2018-10-09','2018-10-12'))
+
+@app.route("/query_4", methods=['POST'])
 def query_4():
     return jsonify(db.query_4('1'))
 
-@app.route("/query_5", methods=['GET'])
+@app.route("/query_5", methods=['POST'])
 def query_5():
     return jsonify(db.query_5('2018-10-11'))
 
