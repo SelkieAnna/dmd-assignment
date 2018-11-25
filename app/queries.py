@@ -36,20 +36,16 @@ class Queries:
                       SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
-                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00')
-                  """
-        afternoon = """
-                      SELECT COUNT(car_id) FROM
+
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00') AS Morning_cars"""
+        afternoon = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
-                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00')
-                    """
-        evening = """
-                      SELECT COUNT(car_id) FROM
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00') AS Afternoon_cars"""
+        evening = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
-                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00')
-                  """
+                              DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00') AS Evening_Cars"""
         cursor.execute(morning)
         cursor.execute(afternoon)
         cursor.execute(evening)
@@ -102,50 +98,66 @@ class Queries:
     # top-3 not done yet
     # maybe include some interactivity:
     # point a/point b, time period, number (top-3/top-10/...)
-    # def query_6(self):
-    #     cursor = self.db.cursor()
-    #     morning_a = '''SELECT point_a, COUNT(*) FROM
-    #                         (SELECT point_a FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00')
-    #                     GROUP BY point_a
-    #                     ORDER BY COUNT(*)'''
-    #     morning_b = '''SELECT point_b, COUNT(*) FROM
-    #                         (SELECT point_b FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00')
-    #                     GROUP BY point_b
-    #                     ORDER BY COUNT(*)'''
-    #     afternoon_a = '''SELECT point_a, COUNT(*) FROM
-    #                         (SELECT point_a FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00')
-    #                     GROUP BY point_a
-    #                     ORDER BY COUNT(*)'''
-    #     afternoon_b = '''SELECT point_b, COUNT(*) FROM
-    #                         (SELECT point_b FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00')
-    #                     GROUP BY point_b
-    #                     ORDER BY COUNT(*)'''
-    #     evening_a = '''SELECT point_a, COUNT(*) FROM
-    #                         (SELECT point_a FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00')
-    #                     GROUP BY point_a
-    #                     ORDER BY COUNT(*)'''
-    #     evening_b = '''SELECT point_b, COUNT(*) FROM
-    #                         (SELECT point_b FROM Car_order
-    #                         WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
-    #                               DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00')
-    #                     GROUP BY point_b
-    #                     ORDER BY COUNT(*)'''
-    #     cursor.execute(morning_a)
-    #     cursor.execute(morning_b)
-    #     cursor.execute(afternoon_a)
-    #     cursor.execute(afternoon_b)
-    #     cursor.execute(evening_a)
-    #     cursor.execute(evening_a)
-    #     result = cursor.fetchall()
-    #     cursor.close()
-    #     return result
+    def query_6(self):
+        cursor = self.db.cursor()
+        morning_a = """SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00') AS Morning_picks     
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)"""
+        morning_b = """SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00') AS Morning_dests     
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)"""
+        afternoon_a = """SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00') AS Afternoon_picks    
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)"""
+        afternoon_b = """SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00') AS Afternoon_dests
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)"""
+        evening_a = """SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00') AS Evening_picks 
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)"""
+        evening_b = """SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00' AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00') AS Evening_dests  
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)"""
+        cursor.execute(morning_a)
+        cursor.execute(morning_b)
+        cursor.execute(afternoon_a)
+        cursor.execute(afternoon_b)
+        cursor.execute(evening_a)
+        cursor.execute(evening_a)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+
+    # how many months, percentage
+    def query_7(self):
+        cursor = self.db.cursor()
+        sql = """SELECT car_id, COUNT(*) FROM 
+                        (SELECT car_id from Car_order
+                        WHERE DATE(date_time) > %s)
+                    GROUP BY car_id
+                    ORDER BY -COUNT(*)
+                    LIMIT COUNT(*) * %s"""
+        date = '2010-07-14'
+        percentage = 0.1
+        cursor.execute(sql, str(date), str(percentage))
+        result = cursor.fetchall()
+        cursor.close()
+        return result
