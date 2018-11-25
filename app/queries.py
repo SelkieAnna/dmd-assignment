@@ -7,17 +7,17 @@ class Queries:
         self.db = Mysql.connect(host=host, user=user,
                                 passwd=passwd, db=db_name)
 
-    def query_1(self, customer_id):
+    def query_1(self, customer_id, registration_number_start, color):
         cursor = self.db.cursor()
         query = """
                     SELECT * FROM Car WHERE 
                         registration_number = (SELECT car_id FROM Car_order WHERE 
                                                 customer_id=%s AND 
                                                 car_id LIKE %s)
-                    AND color='red'
+                    AND color=%s
                 """
-        regexp = 'AN%'
-        cursor.execute(query, (str(customer_id), regexp))
+        regexp = str(registration_number_start) + '%'
+        cursor.execute(query, (str(customer_id), regexp, str(color)))
         return cursor.fetchall()
 
     def query_2(self, station_id, date):
