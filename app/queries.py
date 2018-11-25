@@ -99,3 +99,53 @@ class Queries:
         cursor.close()
         return record1, record2
 
+    # top-3 not done yet
+    # maybe include some interactivity:
+    # point a/point b, time period, number (top-3/top-10/...)
+    def query_6(self):
+        cursor = self.db.cursor()
+        morning_a = '''SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00))      
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)'''
+        morning_b = '''SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '7:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '10:00:00))      
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)'''
+        afternoon_a = '''SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00))      
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)'''
+        afternoon_b = '''SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '12:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '14:00:00))      
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)'''
+        evening_a = '''SELECT point_a, COUNT(*) FROM
+                            (SELECT point_a FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00))      
+                        GROUP BY point_a
+                        ORDER BY COUNT(*)'''
+        evening_b = '''SELECT point_b, COUNT(*) FROM
+                            (SELECT point_b FROM Car_order
+                            WHERE DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) > '17:00:00) AND
+                                  DATEADD(day, -DATEDIFF(day, 0, date_time), date_time) < '19:00:00))      
+                        GROUP BY point_b
+                        ORDER BY COUNT(*)'''
+        cursor.execute(morning_a)
+        cursor.execute(morning_b)
+        cursor.execute(afternoon_a)
+        cursor.execute(afternoon_b)
+        cursor.execute(evening_a)
+        cursor.execute(evening_a)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
