@@ -49,17 +49,23 @@ def query_9_():
 @app.route("/query_1", methods=['POST'])
 def query_1():
     input = request.form
-    query = db.query_1(input['customer_id'],
+    try:
+        query = db.query_1(input['customer_id'],
                        input['reg_number_start'],
                        input['color'])
+    except IndexError:
+        query = []
     return render_template("table-1.html", query=query)
 
 
 @app.route("/query_2", methods=['POST'])
 def query_2():
     input = request.form
-    query = db.query_2(input['station_id'],
-                       input['date'])
+    try:
+        query = db.query_2(input['station_id'],
+                           input['date'])
+    except IndexError:
+        query = []
     print(query)
     query = [query[0:13], query[13:24]]
     print(query)
@@ -68,27 +74,39 @@ def query_2():
 @app.route("/query_3", methods=['POST'])
 def query_3():
     input = request.form
-    query = db.query_3(input['begin_date'],
-                       input['end_date'])
+    try:
+        query = db.query_3(input['begin_date'],
+                           input['end_date'])
+    except IndexError:
+        query = []
     return render_template("table-3.html", query=query)
 
 @app.route("/query_4", methods=['POST'])
 def query_4():
     input = request.form
-    query = db.query_4(input['customer_id'])
+    try:
+        query = db.query_4(input['customer_id'])
+    except IndexError:
+        query = []
     return render_template("table-4.html", query=query)
 
 @app.route("/query_5", methods=['POST'])
 def query_5():
     input = request.form
-    query = db.query_5(input['day'])
+    try:
+        query = db.query_5(input['day'])
+    except IndexError:
+        query = []
     print(query)
     return render_template("table-5.html", query=query)
 
 @app.route("/query_6", methods=['POST'])
 def query_6():
     input = request.form
-    query = db.query_6(input['top_n'])
+    try:
+        query = db.query_6(input['top_n'])
+    except IndexError:
+        query = []
     len01 = max(len(query[0]), len(query[1]))
     data01 = [[query[0][n] if len(query[0]) > n else ['',''], query[1][n]] if len(query[1]) > n else ['',''] for n in range(len01)]
     len23 = max(len(query[2]), len(query[3]))
@@ -101,27 +119,41 @@ def query_6():
 @app.route("/query_7", methods=['POST'])
 def query_7():
     input = request.form
-    query = db.query_7(input['begin_date'],
-                       input['end_date'],
-                       input['percentage'])
+    try:
+        query = db.query_7(input['begin_date'],
+                           input['end_date'],
+                           input['percentage'])
+    except IndexError:
+        query = []
     return render_template("table-7.html", query=query)
 
 @app.route("/query_8", methods=['POST'])
 def query_8():
     input = request.form
-    query = db.query_8(input['date'])
+    try:
+        query = db.query_8(input['date'])
+    except IndexError:
+        query = []
     return render_template("table-8.html", query=query)
 
 @app.route("/query_9", methods=['POST'])
 def query_9():
     input = request.form
-    query = db.query_9(input['date'])
+    try:
+        query = db.query_9(input['date'])
+    except IndexError:
+        query = []
     print(query)
     return render_template("table-9.html", query=query)
 
 @app.route("/query_10", methods=['GET'])
 def query_10():
-    return render_template("table-10.html", query=db.query_10())
+    try:
+        query = db.query_10()
+    except IndexError:
+        query = []
+    print(query)
+    return render_template("table-10.html", query=query)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)

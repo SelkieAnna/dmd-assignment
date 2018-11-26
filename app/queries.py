@@ -173,6 +173,8 @@ class Queries:
         return result
 
     def query_7(self, begin_date, end_date, percentage):
+        if percentage.__contains__(','):
+            percentage.replace(',', '.')
         cursor = self.db.cursor()
         amount_query = """SELECT COUNT(*) FROM Car"""
         cursor.execute(amount_query)
@@ -184,7 +186,7 @@ class Queries:
                     GROUP BY car_id
                     ORDER BY COUNT(*)
                     LIMIT %s"""
-        cursor.execute(sql, [begin_date, end_date, int(amount * percentage)])
+        cursor.execute(sql, [begin_date, end_date, int(float(amount) * float(percentage))])
         result = cursor.fetchall()
         cursor.close()
         return result

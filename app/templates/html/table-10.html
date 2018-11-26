@@ -53,11 +53,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for row in query %}
                                             <tr>
                                                 {% for column in row %}
                                                     <td> {{ column }} </td>
                                                 {% endfor %}
                                             </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

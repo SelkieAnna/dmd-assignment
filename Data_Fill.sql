@@ -30,6 +30,7 @@ INSERT INTO Car_order (customer_id, car_id, point_a, point_b, date_time, price, 
                    ('2', 'AN123B', '225 N Willow St, Telluride, CO, 81435', '2003 Jay St, Walnut Ridge, AR, 72476', '2018-10-04 12:15:17', '500', '4', '20.5'),
                    ('4', 'P234OH', '55 Hoover Holw, Garrett, KY, 41630', '95 Royal Dr, Carson City, NV, 89706', '2018-11-12 12:15:17', '300', '0.1', '30'),
                    ('2', 'E235BA', '505 Center Pl, Williamsport, PA, 17701', '1541 Owenwood Cir, Sandy, UT, 84092', '2018-10-05 15:54:56', '500', '3', '17.5'),
+                   ('2', 'AN546F', '55 Hoover Holw, Garrett, KY, 41630', '2003 Jay St, Walnut Ridge, AR, 72476', '2018-10-07 13:44:34', '400', '7', '25'),
                    ('2', 'AN546F', '55 Hoover Holw, Garrett, KY, 41630', '2003 Jay St, Walnut Ridge, AR, 72476', '2018-10-07 13:44:34', '400', '7', '25');
 
 
