@@ -49,6 +49,9 @@ def query_9_():
 def query_10_():
     return render_template('form-10.html')
 
+
+
+
 @app.route("/query_1", methods=['POST'])
 def query_1():
     input = request.form
@@ -85,6 +88,7 @@ def query_4():
 def query_5():
     input = request.form
     query = db.query_5(input['day'])
+    print(query)
     return render_template("table-5.html", query=query)
 
 @app.route("/query_6", methods=['POST'])
@@ -112,6 +116,7 @@ def query_8():
 def query_9():
     input = request.form
     query = db.query_9(input['date'])
+    print(query)
     return render_template("table-9.html", query=query)
 
 @app.route("/query_10", methods=['GET'])

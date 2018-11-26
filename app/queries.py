@@ -220,7 +220,7 @@ class Queries:
         for res in result:
             answer.append(res)
         cursor.close()
-        return answer4 #(Workshop_id, name of car_part, average value for week)
+        return answer  # (Workshop_id, name of car_part, average value for week)
 
     def query_10(self):
         cursor = self.db.cursor()
