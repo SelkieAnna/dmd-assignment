@@ -9,6 +9,45 @@ db = Queries("localhost", "root", "1234", "Car_sharing")
 def index():
     pass
 
+@app.route("/query_1", methods=['GET'])
+def query_1_():
+    pass
+
+@app.route("/query_2", methods=['GET'])
+def query_2_():
+    pass
+
+@app.route("/query_3", methods=['GET'])
+def query_3_():
+    pass
+
+@app.route("/query_4", methods=['GET'])
+def query_4_():
+    pass
+
+@app.route("/query_5", methods=['GET'])
+def query_5_():
+    pass
+
+@app.route("/query_6", methods=['GET'])
+def query_6_():
+    pass
+
+@app.route("/query_7", methods=['GET'])
+def query_7_():
+    pass
+
+@app.route("/query_8", methods=['GET'])
+def query_8_():
+    pass
+
+@app.route("/query_9", methods=['GET'])
+def query_9_():
+    pass
+
+@app.route("/query_10", methods=['GET'])
+def query_10_():
+    pass
 
 @app.route("/query_1", methods=['POST'])
 def query_1():
