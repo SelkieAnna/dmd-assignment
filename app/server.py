@@ -16,52 +16,42 @@ def query_1_():
 @app.route("/query_2", methods=['GET'])
 def query_2_():
     return render_template('form-2.html')
-    pass
 
 @app.route("/query_3", methods=['GET'])
 def query_3_():
     return render_template('form-3.html')
-    pass
 
 @app.route("/query_4", methods=['GET'])
 def query_4_():
     return render_template('form-4.html')
-    pass
 
 @app.route("/query_5", methods=['GET'])
 def query_5_():
     return render_template('form-5.html')
-    pass
 
 @app.route("/query_6", methods=['GET'])
 def query_6_():
     return render_template('form-6.html')
-    pass
 
 @app.route("/query_7", methods=['GET'])
 def query_7_():
     return render_template('form-7.html')
-    pass
 
 @app.route("/query_8", methods=['GET'])
 def query_8_():
     return render_template('form-8.html')
-    pass
 
 @app.route("/query_9", methods=['GET'])
 def query_9_():
     return render_template('form-9.html')
-    pass
 
 @app.route("/query_10", methods=['GET'])
 def query_10_():
     return render_template('form-10.html')
-    pass
 
 @app.route("/query_1", methods=['POST'])
 def query_1():
     input = request.form
-    print(input)
     query = db.query_1(input['customer_id'],
                        input['reg_number_start'],
                        input['color'])
@@ -70,48 +60,60 @@ def query_1():
 
 @app.route("/query_2", methods=['POST'])
 def query_2():
-    return jsonify(db.query_2(1, '2017-08-14'))
-
+    input = request.form
+    query = db.query_2(input['station_id'],
+                       input['date'])
+    print(query)
+    return render_template("table-2.html", query=query)
 
 @app.route("/query_3", methods=['POST'])
 def query_3():
-    return jsonify(db.query_3('2018-10-09', '2018-10-12'))
-
+    input = request.form
+    query = db.query_3(input['begin_date'],
+                       input['end_date'])
+    return render_template("table-3.html", query=query)
 
 @app.route("/query_4", methods=['POST'])
 def query_4():
-    return jsonify(db.query_4('1'))
-
+    input = request.form
+    query = db.query_4(input['customer_id'])
+    return render_template("table-4.html", query=query)
 
 @app.route("/query_5", methods=['POST'])
 def query_5():
-    return jsonify(db.query_5('2018-10-11'))
-
+    input = request.form
+    query = db.query_5(input['day'])
+    return render_template("table-5.html", query=query)
 
 @app.route("/query_6", methods=['POST'])
 def query_6():
-    return jsonify(db.query_6(3))
-
+    input = request.form
+    query = db.query_6(input['top_n'])
+    return render_template("table-6.html", query=query)
 
 @app.route("/query_7", methods=['POST'])
 def query_7():
-    return jsonify(db.query_7('2000-01-01', '2019-01-01', 1))
-
+    input = request.form
+    query = db.query_7(input['begin_date'],
+                       input['end_date'],
+                       input['percentage'])
+    return render_template("table-7.html", query=query)
 
 @app.route("/query_8", methods=['POST'])
 def query_8():
-    return jsonify(db.query_8('2018-10-11'))
-
+    input = request.form
+    query = db.query_8(input['date'])
+    return render_template("table-8.html", query=query)
 
 @app.route("/query_9", methods=['POST'])
 def query_9():
-    return jsonify(db.query_9('2018-10-11'))
+    input = request.form
+    query = db.query_9(input['date'])
+    return render_template("table-9.html", query=query)
 
-
-@app.route("/query_10", methods=['POST'])
+@app.route("/query_10", methods=['GET'])
 def query_10():
-    return jsonify(db.query_10())
-
+    return render_template("table-10.html", query=db.query_10())
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)

@@ -75,13 +75,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for row in query %}
                                             <tr>
-                                                {% for column in row %}
+                                                {% for column in query %}
                                                     <td> {{ column }} </td>
                                                 {% endfor %}
                                             </tr>
-                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
