@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query 3</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+    <p>Query 3</p>
+
+    <form id="form" class="topBefore" action="{{ url_for('query_3') }}" method="post">
+
+        <input id="begin_date" type="date" placeholder="BEGIN DATE" name = "begin_date">
+        <input id="end_date" type="date" placeholder="END DATE" name = "END_date">
+        <input id="submit" type="submit" value="GO!">
+
+    </form>
+
+</body>
+</html>
