@@ -64,6 +64,8 @@ def query_2():
     query = db.query_2(input['station_id'],
                        input['date'])
     print(query)
+    query = [query[0:13], query[13:24]]
+    print(query)
     return render_template("table-2.html", query=query)
 
 @app.route("/query_3", methods=['POST'])

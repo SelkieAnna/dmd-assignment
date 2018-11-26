@@ -90,10 +90,7 @@ class Queries:
         cursor.execute(sql_query, customer_id)
         records = cursor.fetchall()
         cursor.close()
-        if len(records) == 0:
-            return False
-        else:
-            return True
+        return records
 
     def query_5(self, day):
         cursor = self.db.cursor()
@@ -113,7 +110,7 @@ class Queries:
         record1 = records[0][0]
         record2 = records[1][0]
         cursor.close()
-        return record1, record2
+        return [record1, record2]
 
     def query_6(self, top_n):
         cursor = self.db.cursor()

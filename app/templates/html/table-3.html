@@ -48,48 +48,14 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>00h-01h</th>
-                                            <th>01h-02h</th>
-                                            <th>02h-03h</th>
-                                            <th>03h-04h</th>
-                                            <th>04h-05h</th>
-                                            <th>05h-06h</th>
-                                            <th>06h-07h</th>
-                                            <th>07h-08h</th>
-                                            <th>08h-09h</th>
-                                            <th>09h-10h</th>
-                                            <th>10h-11h</th>
-                                            <th>11h-12h</th>
-                                            <th>12h-13h</th>
+                                            <th>Morning</th>
+                                            <th>Afternoon</th>
+                                            <th>Evening</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                             <tr>
-                                                {% for column in query[0] %}
-                                                    <td> {{ column }} </td>
-                                                {% endfor %}
-                                            </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>13h-14h</th>
-                                            <th>14h-15h</th>
-                                            <th>15h-16h</th>
-                                            <th>16h-17h</th>
-                                            <th>17h-18h</th>
-                                            <th>18h-19h</th>
-                                            <th>19h-20h</th>
-                                            <th>20h-21h</th>
-                                            <th>21h-22h</th>
-                                            <th>22h-23h</th>
-                                            <th>23h-24h</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                {% for column in query[1] %}
+                                                {% for column in query %}
                                                     <td> {{ column }} </td>
                                                 {% endfor %}
                                             </tr>
