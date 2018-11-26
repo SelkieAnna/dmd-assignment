@@ -45,12 +45,6 @@ def query_8_():
 def query_9_():
     return render_template('form-9.html')
 
-@app.route("/query_10", methods=['GET'])
-def query_10_():
-    return render_template('form-10.html')
-
-
-
 
 @app.route("/query_1", methods=['POST'])
 def query_1():
