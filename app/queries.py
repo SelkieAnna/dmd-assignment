@@ -257,4 +257,3 @@ class Queries:
         result = cursor.fetchall()
         cursor.close()
         return result
->>>>>>> add query 10
