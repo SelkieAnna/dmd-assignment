@@ -213,7 +213,7 @@ class Queries:
                   INNER JOIN (SELECT name, id FROM Car_part) B
                   ON (A.part_id = B.id)
                   GROUP BY workshop_id
-            """
+               """
         cursor.execute(sql, (day,))
         result = cursor.fetchall()
         answer = []
