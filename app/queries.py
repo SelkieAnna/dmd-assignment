@@ -167,7 +167,7 @@ class Queries:
         result.append(cursor.fetchall())
         cursor.execute(evening_a, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(evening_a, [int(top_n)])
+        cursor.execute(evening_b, [int(top_n)])
         result.append(cursor.fetchall())
         cursor.close()
         return result

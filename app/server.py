@@ -95,7 +95,13 @@ def query_5():
 def query_6():
     input = request.form
     query = db.query_6(input['top_n'])
-    query = [query[0:2], query[2:4], query[4:6]]
+    len01 = max(len(query[0]), len(query[1]))
+    data01 = [[query[0][n] if len(query[0]) > n else ['',''], query[1][n]] if len(query[1]) > n else ['',''] for n in range(len01)]
+    len23 = max(len(query[2]), len(query[3]))
+    data23 = [[query[2][n] if len(query[2]) > n else ['',''], query[3][n]] if len(query[3]) > n else ['',''] for n in range(len23)]
+    len45 = max(len(query[4]), len(query[5]))
+    data45 = [[query[4][n] if len(query[4]) > n else ['',''], query[5][n]] if len(query[5]) > n else ['',''] for n in range(len45)]
+    query = [data01, data23, data45]
     return render_template("table-6.html", query=query)
 
 @app.route("/query_7", methods=['POST'])

@@ -55,13 +55,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
-                                                {% for column in query[0] %}
-                                                    {% for column1 in column %}
-                                                        <td> {{ column1 }} </td>
+                                            {% for time in query[0] %}
+                                                <tr>
+                                                {% for tuple in time %}
+
+                                                    {% for point in tuple %}
+                                                        <td> {{ point }} </td>
                                                     {% endfor %}
                                                 {% endfor %}
-                                            </tr>
+                                                </tr>
+                                            {% endfor %}
                                     </tbody>
                                 </table>
                                 <table class="table">
@@ -74,13 +77,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
-                                                {% for column in query[0] %}
-                                                    {% for column1 in column %}
-                                                        <td> {{ column1 }} </td>
+
+                                            {% for time in query[1] %}
+                                                <tr>
+                                                {% for tuple in time %}
+
+                                                    {% for point in tuple %}
+                                                        <td> {{ point }} </td>
                                                     {% endfor %}
                                                 {% endfor %}
-                                            </tr>
+                                                </tr>
+                                            {% endfor %}
+
                                     </tbody>
                                 </table>
                                 <table class="table">
@@ -93,13 +101,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
-                                                {% for column in query[0] %}
-                                                    {% for column1 in column %}
-                                                        <td> {{ column1 }} </td>
+                                            {% for time in query[2] %}
+                                                <tr>
+                                                {% for tuple in time %}
+
+                                                    {% for point in tuple %}
+                                                        <td> {{ point }} </td>
                                                     {% endfor %}
                                                 {% endfor %}
-                                            </tr>
+                                                </tr>
+                                            {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
