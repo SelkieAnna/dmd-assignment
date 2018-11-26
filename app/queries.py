@@ -157,17 +157,17 @@ class Queries:
                         GROUP BY point_b
                         ORDER BY -COUNT(*)
                         LIMIT %s"""
-        cursor.execute(morning_a, [top_n])
+        cursor.execute(morning_a, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(morning_b, [top_n])
+        cursor.execute(morning_b, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(afternoon_a, [top_n])
+        cursor.execute(afternoon_a, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(afternoon_b, [top_n])
+        cursor.execute(afternoon_b, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(evening_a, [top_n])
+        cursor.execute(evening_a, [int(top_n)])
         result.append(cursor.fetchall())
-        cursor.execute(evening_a, [top_n])
+        cursor.execute(evening_a, [int(top_n)])
         result.append(cursor.fetchall())
         cursor.close()
         return result

@@ -91,6 +91,7 @@ def query_5():
 def query_6():
     input = request.form
     query = db.query_6(input['top_n'])
+    query = [query[0:2], query[2:4], query[4:6]]
     return render_template("table-6.html", query=query)
 
 @app.route("/query_7", methods=['POST'])

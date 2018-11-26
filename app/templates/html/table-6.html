@@ -48,20 +48,56 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>customer id</th>
-                                            <th>car registration number</th>
-                                            <th>point A</th>
-                                            <th>point B</th>
-                                            <th>date and time</th>
-                                            <th>price</th>
-                                            <th>distance</th>
-                                            <th>trip duration</th>
+                                            <th>Point A</th>
+                                            <th>Popularity</th>
+                                            <th>Point B</th>
+                                            <th>Popularity</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                             <tr>
-                                                {% for column in query %}
-                                                    <td> {{ column }} </td>
+                                                {% for column in query[0] %}
+                                                    {% for column1 in column %}
+                                                        <td> {{ column1 }} </td>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Point A</th>
+                                            <th>Popularity</th>
+                                            <th>Point B</th>
+                                            <th>Popularity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                {% for column in query[0] %}
+                                                    {% for column1 in column %}
+                                                        <td> {{ column1 }} </td>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Point A</th>
+                                            <th>Popularity</th>
+                                            <th>Point B</th>
+                                            <th>Popularity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                {% for column in query[0] %}
+                                                    {% for column1 in column %}
+                                                        <td> {{ column1 }} </td>
+                                                    {% endfor %}
                                                 {% endfor %}
                                             </tr>
                                     </tbody>
