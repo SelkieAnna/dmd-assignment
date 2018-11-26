@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from queries import Queries
 
 app = Flask(__name__, template_folder='templates/html')
@@ -11,47 +11,59 @@ def index():
 
 @app.route("/query_1", methods=['GET'])
 def query_1_():
+    return render_template('form-1.html')
     pass
 
 @app.route("/query_2", methods=['GET'])
 def query_2_():
+    return render_template('form-2.html')
     pass
 
 @app.route("/query_3", methods=['GET'])
 def query_3_():
+    return render_template('form-3.html')
     pass
 
 @app.route("/query_4", methods=['GET'])
 def query_4_():
+    return render_template('form-4.html')
     pass
 
 @app.route("/query_5", methods=['GET'])
 def query_5_():
+    return render_template('form-5.html')
     pass
 
 @app.route("/query_6", methods=['GET'])
 def query_6_():
+    return render_template('form-6.html')
     pass
 
 @app.route("/query_7", methods=['GET'])
 def query_7_():
+    return render_template('form-7.html')
     pass
 
 @app.route("/query_8", methods=['GET'])
 def query_8_():
+    return render_template('form-8.html')
     pass
 
 @app.route("/query_9", methods=['GET'])
 def query_9_():
+    return render_template('form-9.html')
     pass
 
 @app.route("/query_10", methods=['GET'])
 def query_10_():
+    return render_template('form-10.html')
     pass
 
 @app.route("/query_1", methods=['POST'])
 def query_1():
-    query = db.query_1(2, 'AN', 'red')
+    input = request.form
+    print(input)
+    query = db.query_1(input['customer_id'], input['reg_number_start'], input['color'])
     return render_template("table-1.html", query)
 
 
