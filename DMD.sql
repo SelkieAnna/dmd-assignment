@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS Part_provider (
 CREATE TABLE IF NOT EXISTS Car_part (
   id    INT          PRIMARY KEY AUTO_INCREMENT,
   color VARCHAR(255) NOT NULL,
-  cost  DECIMAL      NOT NULL,
+  cost  FLOAT      NOT NULL,
   name  VARCHAR(255) NOT NULL
 );
 

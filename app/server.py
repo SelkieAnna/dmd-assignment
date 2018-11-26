@@ -46,5 +46,9 @@ def query_8():
 def query_9():
     return jsonify(db.query_9('2018-10-11'))
 
+@app.route("/query_10", methods=['POST'])
+def query_10():
+    return jsonify(db.query_10())
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)

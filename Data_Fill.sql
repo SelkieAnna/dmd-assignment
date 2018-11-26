@@ -115,8 +115,8 @@ INSERT INTO Socket (voltage, station_id, cur_charging)
            ('26.25', '5', '1'),
            ('11.43', '5', '0');
 
-INSERT INTO Socket_car (socket_id, car_id, time_date)
-    VALUES ('7', 'K234EK', '2018-11-12 16:53:26'),
-           ('14', 'P234OH', '2018-10-11 12:23:43');
+INSERT INTO Socket_car (socket_id, car_id, time_date, mah_charged)
+    VALUES ('7', 'K234EK', '2018-11-12 16:53:26', '8'),
+           ('14', 'P234OH', '2018-10-11 12:23:43', '400');
 
 SHOW TABLES;
