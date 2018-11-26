@@ -33,6 +33,7 @@ class Queries:
     def query_3(self, begin_date, end_date):
         cursor = self.db.cursor()
         result = []
+        total_query = """SELECT COUNT(*) FROM Car"""
         morning = """
                       SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
@@ -64,12 +65,15 @@ class Queries:
                               ADDTIME(TIME(date_time), trip_duration) <= '19:00:00')) AND
                               DATE(date_time) >= %s AND
                               DATE(date_time) <= %s) AS Evening_Cars"""
+        cursor.execute(total_query)
+        total = cursor.fetchone()[0]
+        print(total)
         cursor.execute(morning, (begin_date, end_date))
-        result.append(cursor.fetchall()[0][0])
+        result.append(int(cursor.fetchall()[0][0]) / int(total) * 100)
         cursor.execute(afternoon, (begin_date, end_date))
-        result.append(cursor.fetchall()[0][0])
+        result.append(int(cursor.fetchall()[0][0]) / int(total) * 100)
         cursor.execute(evening, (begin_date, end_date))
-        result.append(cursor.fetchall()[0][0])
+        result.append(int(cursor.fetchall()[0][0]) / int(total) * 100)
         cursor.close()
         return result
 
