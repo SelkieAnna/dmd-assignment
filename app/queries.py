@@ -30,27 +30,38 @@ class Queries:
         cursor.close()
         return records[0][2:]
 
-    # might be wrong w.r.t duration
     def query_3(self, begin_date, end_date):
         cursor = self.db.cursor()
         result = []
         morning = """
                       SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) >= '7:00:00' AND
-                              TIME(date_time) <= '10:00:00' AND
+                        WHERE ((TIME(date_time) >= '7:00:00' AND
+                              TIME(date_time) <= '10:00:00') OR 
+                              (TIME(date_time) <= '7:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) >= '10:00:00') OR 
+                              (ADDTIME(TIME(date_time), trip_duration) >= '7:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) <= '10:00:00')) AND
                               DATE(date_time) >= %s AND
                               DATE(date_time) <= %s) AS Morning_cars"""
         afternoon = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) >= '12:00:00' AND
-                              TIME(date_time) <= '14:00:00' AND
+                        WHERE ((TIME(date_time) >= '12:00:00' AND
+                              TIME(date_time) <= '14:00:00') OR 
+                              (TIME(date_time) <= '12:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) >= '14:00:00') OR 
+                              (ADDTIME(TIME(date_time), trip_duration) >= '12:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) <= '14:00:00')) AND
                               DATE(date_time) >= %s AND
                               DATE(date_time) <= %s) AS Afternoon_cars"""
         evening = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) >= '17:00:00' AND
-                              TIME(date_time) <= '19:00:00' AND
+                        WHERE ((TIME(date_time) >= '17:00:00' AND
+                              TIME(date_time) <= '19:00:00') OR 
+                              (TIME(date_time) <= '17:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) >= '19:00:00') OR 
+                              (ADDTIME(TIME(date_time), trip_duration) >= '17:00:00' AND
+                              ADDTIME(TIME(date_time), trip_duration) <= '19:00:00')) AND
                               DATE(date_time) >= %s AND
                               DATE(date_time) <= %s) AS Evening_Cars"""
         cursor.execute(morning, (begin_date, end_date))
@@ -104,7 +115,6 @@ class Queries:
         cursor.close()
         return record1, record2
 
-    # might be wrong w.r.t duration
     def query_6(self, top_n):
         cursor = self.db.cursor()
         result = []
