@@ -64,7 +64,7 @@ def query_1():
     input = request.form
     print(input)
     query = db.query_1(input['customer_id'], input['reg_number_start'], input['color'])
-    return render_template("table-1.html", query)
+    return render_template("table-1.html", query=query)
 
 
 @app.route("/query_2", methods=['POST'])
