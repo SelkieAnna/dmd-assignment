@@ -20,7 +20,7 @@ def query_2():
 
 @app.route("/query_3", methods=['POST'])
 def query_3():
-    return jsonify(db.query_3('2018-10-09','2018-10-12'))
+    return jsonify(db.query_3('2018-10-09', '2018-10-12'))
 
 @app.route("/query_4", methods=['POST'])
 def query_4():
@@ -29,6 +29,14 @@ def query_4():
 @app.route("/query_5", methods=['POST'])
 def query_5():
     return jsonify(db.query_5('2018-10-11'))
+
+@app.route("/query_6", methods=['POST'])
+def query_6():
+    return jsonify(db.query_6(3))
+
+@app.route("/query_7", methods=['POST'])
+def query_7():
+    return jsonify(db.query_7('2000-01-01', '2019-01-01', 1))
 
 @app.route("/query_8", methods=['GET'])
 def query_8():

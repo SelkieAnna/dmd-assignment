@@ -30,28 +30,29 @@ class Queries:
         cursor.close()
         return records[0][2:]
 
+    # might be wrong w.r.t duration
     def query_3(self, begin_date, end_date):
         cursor = self.db.cursor()
         result = []
         morning = """
                       SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) > '7:00:00' AND
-                              TIME(date_time) < '10:00:00' AND
-                              DATE(date_time) > %s AND
-                              DATE(date_time) < %s) AS Morning_cars"""
+                        WHERE TIME(date_time) >= '7:00:00' AND
+                              TIME(date_time) <= '10:00:00' AND
+                              DATE(date_time) >= %s AND
+                              DATE(date_time) <= %s) AS Morning_cars"""
         afternoon = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) > '12:00:00' AND
-                              TIME(date_time) < '14:00:00' AND
-                              DATE(date_time) > %s AND
-                              DATE(date_time) < %s) AS Afternoon_cars"""
+                        WHERE TIME(date_time) >= '12:00:00' AND
+                              TIME(date_time) <= '14:00:00' AND
+                              DATE(date_time) >= %s AND
+                              DATE(date_time) <= %s) AS Afternoon_cars"""
         evening = """SELECT COUNT(car_id) FROM
                         (SELECT DISTINCT car_id FROM Car_order
-                        WHERE TIME(date_time) > '17:00:00' AND
-                              TIME(date_time) < '19:00:00' AND
-                              DATE(date_time) > %s AND
-                              DATE(date_time) < %s) AS Evening_Cars"""
+                        WHERE TIME(date_time) >= '17:00:00' AND
+                              TIME(date_time) <= '19:00:00' AND
+                              DATE(date_time) >= %s AND
+                              DATE(date_time) <= %s) AS Evening_Cars"""
         cursor.execute(morning, (begin_date, end_date))
         result.append(cursor.fetchall()[0][0])
         cursor.execute(afternoon, (begin_date, end_date))
@@ -103,69 +104,80 @@ class Queries:
         cursor.close()
         return record1, record2
 
-    # top-3 not done yet
-    # maybe include some interactivity:
-    # point a/point b, time period, number (top-3/top-10/...)
-    def query_6(self):
+    # might be wrong w.r.t duration
+    def query_6(self, top_n):
         cursor = self.db.cursor()
+        result = []
         morning_a = """SELECT point_a, COUNT(*) FROM
                             (SELECT point_a FROM Car_order
                             WHERE TIME(date_time) > '7:00:00' AND
                                   TIME(date_time) < '10:00:00') AS Morning_picks     
                         GROUP BY point_a
-                        ORDER BY COUNT(*)"""
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
         morning_b = """SELECT point_b, COUNT(*) FROM
                             (SELECT point_b FROM Car_order
                             WHERE TIME(date_time) > '7:00:00' AND
                                   TIME(date_time) < '10:00:00') AS Morning_dests     
                         GROUP BY point_b
-                        ORDER BY COUNT(*)"""
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
         afternoon_a = """SELECT point_a, COUNT(*) FROM
                             (SELECT point_a FROM Car_order
                             WHERE TIME(date_time) > '12:00:00' AND
                                   TIME(date_time) < '14:00:00') AS Afternoon_picks    
                         GROUP BY point_a
-                        ORDER BY COUNT(*)"""
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
         afternoon_b = """SELECT point_b, COUNT(*) FROM
                             (SELECT point_b FROM Car_order
                             WHERE TIME(date_time) > '12:00:00' AND
                                   TIME(date_time) < '14:00:00') AS Afternoon_dests
                         GROUP BY point_b
-                        ORDER BY COUNT(*)"""
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
         evening_a = """SELECT point_a, COUNT(*) FROM
                             (SELECT point_a FROM Car_order
                             WHERE TIME(date_time) > '17:00:00' AND
                                   TIME(date_time) < '19:00:00') AS Evening_picks 
                         GROUP BY point_a
-                        ORDER BY COUNT(*)"""
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
         evening_b = """SELECT point_b, COUNT(*) FROM
                             (SELECT point_b FROM Car_order
                             WHERE TIME(date_time) > '17:00:00' AND
                                   TIME(date_time) < '19:00:00') AS Evening_dests  
                         GROUP BY point_b
-                        ORDER BY COUNT(*)"""
-        cursor.execute(morning_a)
-        cursor.execute(morning_b)
-        cursor.execute(afternoon_a)
-        cursor.execute(afternoon_b)
-        cursor.execute(evening_a)
-        cursor.execute(evening_a)
-        result = cursor.fetchall()
+                        ORDER BY -COUNT(*)
+                        LIMIT %s"""
+        cursor.execute(morning_a, [top_n])
+        result.append(cursor.fetchall())
+        cursor.execute(morning_b, [top_n])
+        result.append(cursor.fetchall())
+        cursor.execute(afternoon_a, [top_n])
+        result.append(cursor.fetchall())
+        cursor.execute(afternoon_b, [top_n])
+        result.append(cursor.fetchall())
+        cursor.execute(evening_a, [top_n])
+        result.append(cursor.fetchall())
+        cursor.execute(evening_a, [top_n])
+        result.append(cursor.fetchall())
         cursor.close()
         return result
 
-    # how many months, percentage
-    def query_7(self):
+    def query_7(self, begin_date, end_date, percentage):
         cursor = self.db.cursor()
+        amount_query = """SELECT COUNT(*) FROM Car"""
+        cursor.execute(amount_query)
+        amount = cursor.fetchone()[0]
         sql = """SELECT car_id, COUNT(*) FROM 
                         (SELECT car_id from Car_order
-                        WHERE DATE(date_time) > %s) AS Orders
+                        WHERE DATE(date_time) >= %s AND
+                              DATE(date_time) <= %s) AS Orders
                     GROUP BY car_id
-                    ORDER BY -COUNT(*)
-                    LIMIT COUNT(*) * %s"""
-        date = '2010-07-14'
-        percentage = 0.1
-        cursor.execute(sql, str(date), str(percentage))
+                    ORDER BY COUNT(*)
+                    LIMIT %s"""
+        cursor.execute(sql, [begin_date, end_date, amount * percentage])
         result = cursor.fetchall()
         cursor.close()
         return result
