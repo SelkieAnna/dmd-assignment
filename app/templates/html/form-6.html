@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query 6</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+    <p>Query 6</p>
+
+    <form id="form" class="topBefore" action="{{ url_for('query_6') }}" method="post">
+
+        <input id="top_n" type="text" placeholder="TOP VALUE" name = "top_n">
+        <input id="submit" type="submit" value="GO!">
+
+    </form>
+
+</body>
+</html>
