@@ -7,12 +7,11 @@ db = Queries("localhost", "root", "1234", "Car_sharing")
 
 @app.route("/", methods=['GET'])
 def index():
-    pass
+    return render_template('index.html')
 
 @app.route("/query_1", methods=['GET'])
 def query_1_():
     return render_template('form-1.html')
-    pass
 
 @app.route("/query_2", methods=['GET'])
 def query_2_():
@@ -61,10 +60,11 @@ def query_10_():
 
 @app.route("/query_1", methods=['POST'])
 def query_1():
-    input = request.form
-    print(input)
-    query = db.query_1(input['customer_id'], input['reg_number_start'], input['color'])
-    return render_template("table-1.html", query)
+    query = db.query_1(request.form['customer_id'],
+                       request.form['reg_number_start'],
+                       request.form['color'])
+    print(query)
+    return render_template("table-1.html", query=query)
 
 
 @app.route("/query_2", methods=['POST'])
