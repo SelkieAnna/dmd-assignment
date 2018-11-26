@@ -38,9 +38,13 @@ def query_6():
 def query_7():
     return jsonify(db.query_7('2000-01-01', '2019-01-01', 1))
 
-@app.route("/query_8", methods=['GET'])
+@app.route("/query_8", methods=['POST'])
 def query_8():
     return jsonify(db.query_8('2018-10-11'))
+
+@app.route("/query_9", methods=['POST'])
+def query_9():
+    return jsonify(db.query_9('2018-10-11'))
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True)

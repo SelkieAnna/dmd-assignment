@@ -206,17 +206,21 @@ class Queries:
         cursor.close()
         return result  #first value is user_id. second value is amount
 
-    def query_9(self):
+    def query_9(self, day):
         cursor = self.db.cursor()
-        sql = """ SELECT part_id, COUNT(part_id), A.workshop_id FROM Part_order A
-                    INNER JOIN (SELECT workshop_id, COUNT(workshop_id) AS number 
-                                FROM Part_order 
-                                GROUP BY workshop_id
-                                ) B
-                    WHERE A.workshop_id = B.workshop_id 
-                    GROUP BY part_id
-        """
-        cursor.execute(sql)
+        sql = """SELECT A.workshop_id, B.name,  A.pairs / (DATEDIFF(NOW(), %s)/7) FROM (
+                  SELECT workshop_id,  part_id , COUNT(*) AS pairs 
+                  FROM Fixes
+                  GROUP BY workshop_id, part_id
+                  ORDER BY -COUNT(*) ) A
+                  INNER JOIN (SELECT name, id FROM Car_part) B
+                  ON (A.part_id = B.id)
+                  GROUP BY workshop_id
+            """
+        cursor.execute(sql, (day,))
         result = cursor.fetchall()
+        answer = []
+        for res in result:
+            answer.append(res)
         cursor.close()
-        return result
+        return answer #(Workshop_id, name of car_part, average value for week)
