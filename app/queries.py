@@ -208,13 +208,14 @@ class Queries:
         sql = """SELECT A.workshop_id, B.name,  A.pairs / (DATEDIFF(NOW(), %s)/7) FROM (
                   SELECT workshop_id,  part_id , COUNT(*) AS pairs 
                   FROM Fixes
+                  WHERE time_and_date > %s
                   GROUP BY workshop_id, part_id
                   ORDER BY -COUNT(*) ) A
                   INNER JOIN (SELECT name, id FROM Car_part) B
                   ON (A.part_id = B.id)
                   GROUP BY workshop_id
-               """
-        cursor.execute(sql, (day,))
+            """
+        cursor.execute(sql, (day, day,))
         result = cursor.fetchall()
         answer = []
         for res in result:
