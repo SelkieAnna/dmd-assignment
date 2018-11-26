@@ -184,7 +184,7 @@ class Queries:
                     GROUP BY car_id
                     ORDER BY COUNT(*)
                     LIMIT %s"""
-        cursor.execute(sql, [begin_date, end_date, amount * percentage])
+        cursor.execute(sql, [begin_date, end_date, int(amount * percentage)])
         result = cursor.fetchall()
         cursor.close()
         return result
