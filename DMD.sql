@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS Socket_car (
   socket_id INT           NOT NULL,
   car_id    VARCHAR(255)  NOT NULL,
   time_date DATETIME      NOT NULL,
+  mah_charged FLOAT       NOT NULL,
 
   FOREIGN KEY (socket_id) REFERENCES Socket (id),
   FOREIGN KEY (car_id) REFERENCES Car (registration_number)

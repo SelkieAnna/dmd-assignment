@@ -224,3 +224,37 @@ class Queries:
             answer.append(res)
         cursor.close()
         return answer #(Workshop_id, name of car_part, average value for week)
+
+    def query_10(self):
+        cursor = self.db.cursor()
+        sql = """SELECT Car_model.model, AVG(cost) FROM
+                    (SELECT Charge.car_id, Repair.n_date, (repair_costs + charging_costs) AS cost FROM
+                        (SELECT car_id, n_date, SUM(cost) AS repair_costs FROM
+                            (SELECT car_id, DATE(time_and_date) AS n_date, cost FROM 
+                                Fixes F INNER JOIN Car_part C ON (F.part_id = C.id)) Part_cost
+                                ORDER BY car_id, n_date) Repair
+                        INNER JOIN
+                        (SELECT car_id, n_date, SUM(cost) AS charging_costs FROM
+                            (SELECT car_id, DATE(time_date) AS n_date, cost_mah * mah_charged AS cost FROM
+                                (Socket_car Sc INNER JOIN Socket S ON (Sc.socket_id = S.id)) ScS
+                                INNER JOIN Charging_station Cs ON (ScS.station_id = Cs.id)) Charge_cost
+                                ORDER BY car_id, n_date) Charge
+                        ON (Repair.car_id = Charge.car_id AND Repair.n_date = Charge.n_date)) Costs
+                    INNER JOIN
+                    Car Car
+                    INNER JOIN
+                    Car_model Car_model
+                    ON (Costs.car_id = Car.registration_number AND Car.car_model = Car_model.id)
+                 GROUP BY car_model"""
+        # model, avg_cost from costs
+        # costs: car_id, date, cost (car_id -> model; model, date, cost -> avg_cost)
+        # cost from fixes, socket_car (for particular date and car_id)
+        # fixes -> car parts -> cost (maybe a table: car_id, car_model, date, cost)
+        # socket_car -> socket -> charging station -> cost = socket_car.charged * Charging_station.cost_mah
+        # !!! Need to add mah_charged into socket_car !!!
+        # all in all 7 tables are involved
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+>>>>>>> add query 10
